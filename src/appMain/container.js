@@ -1,3 +1,5 @@
+import Table from "../elements/table";
+
 export default function Container() {
   return (
     <div className="AppSetting">
@@ -19,6 +21,9 @@ export default function Container() {
                     </ol>
                   </div>
                 </div>
+
+                <br />
+                <Table></Table>
               </div>
             </div>
           </div>
