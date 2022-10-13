@@ -12,11 +12,6 @@ export default function AppMenu() {
         <div class="sidebar">
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img
-                src="dist/img/user2-160x160.jpg"
-                class="img-circle elevation-2"
-                alt="User Image"
-              />
             </div>
             <div class="info">
               <a href="#" class="d-block">
@@ -49,10 +44,9 @@ export default function AppMenu() {
               data-accordion="false"
             >
               <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
-                  {/* <i class="nav-icon fas fa-tachometer-alt"></i> */}
+                <a href="#" class="nav-link">
                   <p>
-                    즐겨찾기
+                    Menu
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
