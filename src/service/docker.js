@@ -1,27 +1,26 @@
 import $ from "jquery";
 import SERVER_ADDRESS from "../config/config";
 
-export default class dockerService {
-  container() {
-    var state_keys = {
-      running: '<p class="text-white bg-success">실행</p>',
-      exited: '<p class="text-white bg-danger">종료</p>',
-      created: "생성",
-      restarting: "재시작",
-      paused: "일시정지",
-    };
+function container() {
+  var state_keys = {
+    running: '<p class="text-white bg-success">실행</p>',
+    exited: '<p class="text-white bg-danger">종료</p>',
+    created: "생성",
+    restarting: "재시작",
+    paused: "일시정지",
+  };
 
-    var result_element = $("#result");
-    return new Promise(function (resolve, reject) {
-      result_element.empty();
-      $.ajax({
-        method: "GET",
-        url: SERVER_ADDRESS + "/container",
-        contentType: "application/json",
-        success: function (data) {
-          console.log(data);
-          resolve(data);
-          result_element.append(`
+  var result_element = $("#result");
+  return new Promise(function (resolve, reject) {
+    result_element.empty();
+    $.ajax({
+      method: "GET",
+      url: SERVER_ADDRESS + "/container",
+      contentType: "application/json",
+      success: function (data) {
+        console.log(data);
+        resolve(data);
+        result_element.append(`
                             <table class="table table-striped table-bordered text-center align-middle">
                                 <thead>
                                     <tr>
@@ -36,9 +35,9 @@ export default class dockerService {
                                 <tbody id="result_data">
                                 </tbody>
                             </table>`);
-          var result_data_element = $("#result_data");
-          const container_data = data["containers"];
-          result_data_element.append(`
+        var result_data_element = $("#result_data");
+        const container_data = data["containers"];
+        result_data_element.append(`
                             <tr>
                                 <th scope="col"> <input class="form-check-input" type="checkbox" id="" name="chk_list"> </th>
                                 <td>TeamSaba</td>
@@ -57,8 +56,8 @@ export default class dockerService {
                                 </td>
                             </tr>
                         `);
-          for (let i = 0; i < container_data.length; i++) {
-            result_data_element.append(`
+        for (let i = 0; i < container_data.length; i++) {
+          result_data_element.append(`
                             <tr>
                                 <th scope="col"> <input class="form-check-input" type="checkbox" id="" name="chk_list"> </th>
                                 <td>${container_data[i]["Name"]}</td>
@@ -91,106 +90,107 @@ export default class dockerService {
                                 </td>
                             </tr>
                         `);
-          }
-        },
-        error: function (request, status, error) {
-          console.log(request, status, error);
-          reject(error);
-        },
-      });
-    });
-  }
-
-  start(container_id) {
-    $.ajax({
-      method: "POST",
-      url: SERVER_ADDRESS + "/container/start",
-      data: JSON.stringify({ container_id: container_id }),
-      contentType: "application/json",
-      success: function (data) {
-        console.log(data);
-        this.container();
-      },
-      beforeSend: function () {
-        $(".wrap-loading").removeClass("display-none");
-      },
-      complete: function () {
-        $(".wrap-loading").addClass("display-none");
+        }
       },
       error: function (request, status, error) {
         console.log(request, status, error);
+        reject(error);
       },
-      timeout: 100000,
     });
-  }
-
-  stop(container_id) {
-    $.ajax({
-      method: "POST",
-      url: SERVER_ADDRESS + "/container/stop",
-      data: JSON.stringify({ container_id: container_id }),
-      contentType: "application/json",
-      success: function (data) {
-        console.log(data);
-        this.container();
-      },
-      beforeSend: function () {
-        $(".wrap-loading").removeClass("display-none");
-      },
-      complete: function () {
-        $(".wrap-loading").addClass("display-none");
-      },
-      error: function (request, status, error) {
-        console.log(request, status, error);
-      },
-      timeout: 100000,
-    });
-  }
-
-  restart(container_id) {
-    $.ajax({
-      method: "POST",
-      url: SERVER_ADDRESS + "/container/restart",
-      data: JSON.stringify({ container_id: container_id }),
-      contentType: "application/json",
-      success: function (data) {
-        console.log(data);
-        this.container();
-      },
-      beforeSend: function () {
-        $(".wrap-loading").removeClass("display-none");
-      },
-      complete: function () {
-        $(".wrap-loading").addClass("display-none");
-      },
-      error: function (request, status, error) {
-        console.log(request, status, error);
-      },
-      timeout: 100000,
-    });
-  }
-
-  remove(container_id) {
-    $.ajax({
-      method: "POST",
-      url: SERVER_ADDRESS + "/container/remove",
-      data: JSON.stringify({ container_id: container_id }),
-      contentType: "application/json",
-      success: function (data) {
-        console.log(data);
-        this.container();
-      },
-      beforeSend: function () {
-        $(".wrap-loading").removeClass("display-none");
-      },
-      complete: function () {
-        $(".wrap-loading").addClass("display-none");
-        this.container();
-      },
-      error: function (request, status, error) {
-        console.log(request, status, error);
-      },
-      timeout: 100000,
-    });
-  }
+  });
 }
+
+function start(container_id) {
+  $.ajax({
+    method: "POST",
+    url: SERVER_ADDRESS + "/container/start",
+    data: JSON.stringify({ container_id: container_id }),
+    contentType: "application/json",
+    success: function (data) {
+      console.log(data);
+      this.container();
+    },
+    beforeSend: function () {
+      $(".wrap-loading").removeClass("display-none");
+    },
+    complete: function () {
+      $(".wrap-loading").addClass("display-none");
+    },
+    error: function (request, status, error) {
+      console.log(request, status, error);
+    },
+    timeout: 100000,
+  });
+}
+
+function stop(container_id) {
+  $.ajax({
+    method: "POST",
+    url: SERVER_ADDRESS + "/container/stop",
+    data: JSON.stringify({ container_id: container_id }),
+    contentType: "application/json",
+    success: function (data) {
+      console.log(data);
+      this.container();
+    },
+    beforeSend: function () {
+      $(".wrap-loading").removeClass("display-none");
+    },
+    complete: function () {
+      $(".wrap-loading").addClass("display-none");
+    },
+    error: function (request, status, error) {
+      console.log(request, status, error);
+    },
+    timeout: 100000,
+  });
+}
+
+function restart(container_id) {
+  $.ajax({
+    method: "POST",
+    url: SERVER_ADDRESS + "/container/restart",
+    data: JSON.stringify({ container_id: container_id }),
+    contentType: "application/json",
+    success: function (data) {
+      console.log(data);
+      this.container();
+    },
+    beforeSend: function () {
+      $(".wrap-loading").removeClass("display-none");
+    },
+    complete: function () {
+      $(".wrap-loading").addClass("display-none");
+    },
+    error: function (request, status, error) {
+      console.log(request, status, error);
+    },
+    timeout: 100000,
+  });
+}
+
+function remove(container_id) {
+  $.ajax({
+    method: "POST",
+    url: SERVER_ADDRESS + "/container/remove",
+    data: JSON.stringify({ container_id: container_id }),
+    contentType: "application/json",
+    success: function (data) {
+      console.log(data);
+      this.container();
+    },
+    beforeSend: function () {
+      $(".wrap-loading").removeClass("display-none");
+    },
+    complete: function () {
+      $(".wrap-loading").addClass("display-none");
+      this.container();
+    },
+    error: function (request, status, error) {
+      console.log(request, status, error);
+    },
+    timeout: 100000,
+  });
+}
+
+export { container, start, stop, restart, remove };

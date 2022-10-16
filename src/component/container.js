@@ -1,12 +1,12 @@
 import Table from "../elements/table";
 import { containerHeader } from "./Header";
 import { useEffect } from "react";
-import dockerService from "../service/docker";
+import { container } from "../service/docker";
 
 export default function Container() {
   useEffect(() => {
     console.log("test");
-    // dockerService.container();
+    container();
   }, []);
 
   return (
