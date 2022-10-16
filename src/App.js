@@ -1,4 +1,4 @@
-import AppHeader from "./component/appHeader.js";
+import { AppHeader } from "./component/Header.js";
 import AppMenu from "./component/appMenu.js";
 import AppFooter from "./component/appFooter.js";
 import AppMain from "./component/appMain.js";
