@@ -1,5 +1,5 @@
 import $ from "jquery";
-import SERVER_ADDRESS from "../config/config";
+import {SERVER_ADDRESS} from "../config/config";
 
 function container() {
   var state_keys = {
