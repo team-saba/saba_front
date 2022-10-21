@@ -3,12 +3,10 @@ import { containerHeader } from "./Header";
 import { useEffect } from "react";
 import { container } from "../service/docker";
 
-import { DockerServiceController } from "../controller/docker_controller";
-
 export default function Container() {
   useEffect(() => {
     console.log("test");
-    DockerServiceController.container();
+    container();
   }, []);
 
   return (
