@@ -1,9 +1,12 @@
+/* eslint-disable */
 import { AppHeader } from "./component/Header.js";
 import AppMenu from "./component/appMenu.js";
 import AppFooter from "./component/appFooter.js";
 import AppMain from "./component/appMain.js";
 import { Route, Routes } from "react-router-dom";
 import Container from "./component/container.js";
+import axios from 'axios';
+import { useEffect } from "react";
 
 function App() {
   return (
