@@ -1,49 +1,25 @@
+/* eslint-disable */
 import $ from "jquery";
-import {SERVER_ADDRESS,token} from "../config/config";
+import {SERVER_ADDRESS} from "../config/config";
+import { DockerService } from "../service/docker_service";
 
-export class DockerController{
-    constructor(){}
+export class DockerServiceController{
+    static container(){
+        var state_keys = {
+            running: '<p class="text-white bg-success">실행</p>',
+            exited: '<p class="text-white bg-danger">종료</p>',
+            created: "생성",
+            restarting: "재시작",
+            paused: "일시정지",
+        };
 
-    static container() {
-        $.ajax({
-                method: "GET",
-                url: SERVER_ADDRESS + "/container"+token,
-                contentType: "application/json",
-                dataType : "json",
-                success: function (data) {
-                    alert(data)
-                    console.log(data);
+        var result_element = $("#result");
+        var result_data_element = $("#result_data");
 
-                },
-                error: function (request, status, error) {
-                    console.log(request, status, error);
-                },
-            });
+        const tempData = DockerService.container();        
+    }
 
-        // return new Promise(function (resolve, reject) {
-        //     console.log(SERVER_ADDRESS + "/container"+token) //test
-        //     //name/verified/state/image/command
-
-        //     $.ajax({
-        //         method: "GET",
-        //         url: SERVER_ADDRESS + "/container"+token,
-        //         contentType: "application/json",
-        //         dataType : "json",
-        //         success: function (data) {
-        //             alert(data)
-        //             console.log(data);
-        //             resolve(data);
-
-        //         },
-        //         error: function (request, status, error) {
-        //             console.log(request, status, error);
-        //             reject(error);
-        //         },
-        //     });
-        // });
-
-
+    static start(container_id) {
+        const status = DockerService.start();
     }
 }
-
-
