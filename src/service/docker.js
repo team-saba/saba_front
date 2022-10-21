@@ -20,7 +20,6 @@ function container() {
       success: function (data) {
         console.log(data);
         resolve(data);
-        result_element.empty();
         result_element.append(`
                             <table class="table table-striped table-bordered text-center align-middle">
                                 <thead>
