@@ -1,15 +1,10 @@
 import Table from "../elements/table";
 import { containerHeader } from "./Header";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import {DockerServiceController} from "../controller/docker_controller";
 
 
 export default function Container() {
-  useEffect(() => {
-    console.log("test");
-    DockerServiceController.container();
-  }, []);
-
   return (
     <div className="AppSetting">
       <containerHeader></containerHeader>
