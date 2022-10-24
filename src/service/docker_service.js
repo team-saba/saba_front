@@ -19,7 +19,7 @@ export class DockerService{
         return new Promise(function (resolve, reject) {
             $.ajax({
             method: "GET",
-            url: 'http://react.seungwook.me/api/container?token=8f408a4bc9873d9c227ad7ecf6297698236879732ed6addf514290072c5bceb10c69e1a91a9a1ab3067793af6991ae6a16a0849966682a8a7251a087eabdcac6',
+            url: SERVER_ADDRESS + "/container/"+token,
             contentType: "application/json",
             success: function (data) {
                 resJson.container_data=data["containers"];
@@ -42,16 +42,11 @@ export class DockerService{
             contentType: "application/json",
             success: function (data) {
               console.log(data);
-              // resolve(data);
-        },
-        beforeSend: function () {
-            $(".wrap-loading").removeClass("display-none");
-        },
-        complete: function () {
-            $(".wrap-loading").addClass("display-none");
+              resolve(data);
         },
         error: function (request, status, error) {
             console.log(request, status, error);
+            return false;
         }
         });
 
@@ -65,15 +60,11 @@ export class DockerService{
         contentType: "application/json",
         success: function (data) {
           console.log(data);
-        },
-        beforeSend: function () {
-          $(".wrap-loading").removeClass("display-none");
-        },
-        complete: function () {
-          $(".wrap-loading").addClass("display-none");
+          resolve(data);
         },
         error: function (request, status, error) {
           console.log(request, status, error);
+          return false;
         }   
        });
   }
@@ -88,16 +79,10 @@ export class DockerService{
       success: function (data) {
         console.log(data);
       },
-      beforeSend: function () {
-        $(".wrap-loading").removeClass("display-none");
-      },
-      complete: function () {
-        $(".wrap-loading").addClass("display-none");
-      },
       error: function (request, status, error) {
         console.log(request, status, error);
-      },
-      timeout: 100000,
+        return false;
+      }
     });
   }
 
@@ -110,16 +95,10 @@ export class DockerService{
         success: function (data) {
           console.log(data);
         },
-        beforeSend: function () {
-          $(".wrap-loading").removeClass("display-none");
-        },
-        complete: function () {
-          $(".wrap-loading").addClass("display-none");
-        },
         error: function (request, status, error) {
           console.log(request, status, error);
-        },
-        timeout: 100000,
+          return false;
+        }
       });
     }
 }
