@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import {DockerServiceController} from "../controller/docker_controller";
 import { useState } from "react";
 
+
 export default function Table() {
   let [ containers, setContainers ] = useState([]);
   const style={ color: 'green'}
+ 
 
   useEffect(() => {
     DockerServiceController.container()
@@ -40,10 +42,10 @@ export default function Table() {
                       <td colspan="2">{c.Config.Image}</td>
                       <td colspan="2">
                       <div class="btn-group" role="group" aria-label="Action">
-                          <button type="button" class="btn btn-success" onclick="start('')">start</button>
-                          <button type="button" class="btn btn-warning" onclick="stop('')">stop</button>
-                          <button type="button" class="btn btn-primary" onclick="">restart</button>
-                          <button type="button" class="btn btn-danger" onclick="remove('')">remove</button>
+                          <button type="button" class="btn btn-success" onclick={DockerServiceController.start(c.Id)}  >start</button>
+                          <button type="button" class="btn btn-warning" onclick={DockerServiceController.stop(c.Id)}>stop</button>
+                          <button type="button" class="btn btn-primary" onclick={DockerServiceController.restart(c.Id)}>restart</button>
+                          <button type="button" class="btn btn-danger" onclick={DockerServiceController.remove(c.Id)}>remove</button>
                           <button type="button" class="btn btn-primary" onclick="">scan</button>
                           <button type="button" class="btn btn-primary" onclick="">sign</button>
                       </div>

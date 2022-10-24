@@ -10,6 +10,23 @@ export class DockerServiceController{
     }
 
     static start(container_id) {
-        const status = DockerService.start();
+        const resJson = DockerService.start(container_id);
+        return resJson;
     }
+
+    static stop(container_id){
+        const resJson = DockerService.stop(container_id);
+        return resJson;
+    }
+
+    static restart(container_id){
+        const resJson = DockerService.restart(container_id);
+        return resJson;
+    }
+
+    static remove(container_id){
+        const resJson = DockerService.remove(container_id);
+        return resJson;
+    }
+
 }

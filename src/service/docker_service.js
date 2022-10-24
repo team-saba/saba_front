@@ -1,6 +1,7 @@
 
 /* eslint-disable */
 import $ from "jquery";
+import {SERVER_ADDRESS,token} from "../config/config";
 
 export class DockerService{
     static container(){
@@ -33,15 +34,15 @@ export class DockerService{
     }
 
 
-    static start(){
+    static start(container_id){
         $.ajax({
             method: "POST",
             url: SERVER_ADDRESS + "/container/start"+token,
             data: JSON.stringify({ container_id: container_id }),
             contentType: "application/json",
             success: function (data) {
-            console.log(data);
-            this.container();
+              console.log(data);
+              // resolve(data);
         },
         beforeSend: function () {
             $(".wrap-loading").removeClass("display-none");
@@ -51,9 +52,74 @@ export class DockerService{
         },
         error: function (request, status, error) {
             console.log(request, status, error);
-        },
-        timeout: 100000,
+        }
         });
 
+    }
+
+    static stop(container_id) {
+      $.ajax({
+        method: "POST",
+        url: SERVER_ADDRESS + "/container/stop"+token,
+        data: JSON.stringify({ container_id: container_id }),
+        contentType: "application/json",
+        success: function (data) {
+          console.log(data);
+        },
+        beforeSend: function () {
+          $(".wrap-loading").removeClass("display-none");
+        },
+        complete: function () {
+          $(".wrap-loading").addClass("display-none");
+        },
+        error: function (request, status, error) {
+          console.log(request, status, error);
+        }   
+       });
+  }
+
+
+  static restart(container_id) {
+    $.ajax({
+      method: "POST",
+      url: SERVER_ADDRESS + "/container/restart"+token,
+      data: JSON.stringify({ container_id: container_id }),
+      contentType: "application/json",
+      success: function (data) {
+        console.log(data);
+      },
+      beforeSend: function () {
+        $(".wrap-loading").removeClass("display-none");
+      },
+      complete: function () {
+        $(".wrap-loading").addClass("display-none");
+      },
+      error: function (request, status, error) {
+        console.log(request, status, error);
+      },
+      timeout: 100000,
+    });
+  }
+
+  static remove(container_id) {
+      $.ajax({
+        method: "POST",
+        url: SERVER_ADDRESS + "/container/remove"+token,
+        data: JSON.stringify({ container_id: container_id }),
+        contentType: "application/json",
+        success: function (data) {
+          console.log(data);
+        },
+        beforeSend: function () {
+          $(".wrap-loading").removeClass("display-none");
+        },
+        complete: function () {
+          $(".wrap-loading").addClass("display-none");
+        },
+        error: function (request, status, error) {
+          console.log(request, status, error);
+        },
+        timeout: 100000,
+      });
     }
 }
