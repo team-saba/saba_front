@@ -1,5 +1,3 @@
-
-/* eslint-disable */
 import $ from "jquery";
 import {SERVER_ADDRESS,token} from "../config/config";
 

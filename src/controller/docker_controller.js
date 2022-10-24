@@ -1,6 +1,3 @@
-/* eslint-disable */
-import $ from "jquery";
-import {SERVER_ADDRESS} from "../config/config";
 import { DockerService } from "../service/docker_service";
 
 export class DockerServiceController{
