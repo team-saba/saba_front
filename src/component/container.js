@@ -1,7 +1,16 @@
+<<<<<<<< HEAD:src/component/container/container.js
 /* eslint-disable */
 import Table from "./table";
+========
+import Table from "../elements/table";
+import { containerHeader } from "./Header";
+import React, { useEffect } from "react";
+import {DockerServiceController} from "../controller/docker_controller";
+
+>>>>>>>> main:src/component/container.js
 
 export default function Container() {
+
   return (
     <div className="AppSetting">
       <containerHeader></containerHeader>
