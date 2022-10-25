@@ -4,6 +4,10 @@ import {SERVER_ADDRESS} from "../config/config";
 import { DockerService } from "../service/docker_service";
 
 export class DockerServiceController{
+    static test () {
+        console.log('test')
+    }
+
     static container(){
         const resJson = DockerService.container()
         return resJson;

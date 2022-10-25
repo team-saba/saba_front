@@ -1,13 +1,7 @@
-import Table from "../elements/table";
-import { containerHeader } from "./Header";
-import { useEffect } from "react";
-import { container } from "../service/docker";
+/* eslint-disable */
+import Table from "./table";
 
 export default function Container() {
-  useEffect(() => {
-    console.log("test");
-    container();
-  }, []);
 
   return (
     <div className="AppSetting">

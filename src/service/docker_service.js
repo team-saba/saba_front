@@ -1,4 +1,3 @@
-
 /* eslint-disable */
 import $ from "jquery";
 import {SERVER_ADDRESS,token} from "../config/config";
@@ -17,13 +16,15 @@ export class DockerService{
         }
 
         return new Promise(function (resolve, reject) {
+          console.log(SERVER_ADDRESS + "/container"+token)
             $.ajax({
             method: "GET",
-            url: SERVER_ADDRESS + "/container/"+token,
+            url: SERVER_ADDRESS + "/container"+token,
             contentType: "application/json",
             success: function (data) {
                 resJson.container_data=data["containers"];
-                resolve(resJson);
+                resolve(resJson)
+                return resJson;
               },
             error: function (request, status, error) {
                 console.log(request, status, error);
@@ -42,7 +43,7 @@ export class DockerService{
             contentType: "application/json",
             success: function (data) {
               console.log(data);
-              resolve(data);
+              return data;
         },
         error: function (request, status, error) {
             console.log(request, status, error);
@@ -60,7 +61,7 @@ export class DockerService{
         contentType: "application/json",
         success: function (data) {
           console.log(data);
-          resolve(data);
+          return data;
         },
         error: function (request, status, error) {
           console.log(request, status, error);
