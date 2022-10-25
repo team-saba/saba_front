@@ -1,9 +1,9 @@
-import AppHeader from "./appHeader/appHeader.js";
-import AppMenu from "./appMenu/appMenu.js";
-import AppFooter from "./appFooter/appFooter.js";
-import AppMain from "./appMain/appMain.js";
+import { AppHeader } from "./component/Header.js";
+import AppMenu from "./component/appMenu.js";
+import AppFooter from "./component/appFooter.js";
+import AppMain from "./component/appMain.js";
 import { Route, Routes } from "react-router-dom";
-import Container from "./appMain/container.js";
+import Container from "./component/container.js";
 
 function App() {
   return (

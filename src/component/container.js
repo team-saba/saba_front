@@ -1,8 +1,13 @@
 import Table from "../elements/table";
+import { containerHeader } from "./Header";
+import React, { useEffect } from "react";
+import {DockerServiceController} from "../controller/docker_controller";
+
 
 export default function Container() {
   return (
     <div className="AppSetting">
+      <containerHeader></containerHeader>
       <body class="hold-transition sidebar-mini">
         <div class="wrapper">
           <div class="content-wrapper">
