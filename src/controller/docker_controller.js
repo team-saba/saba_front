@@ -4,8 +4,8 @@ import {SERVER_ADDRESS} from "../config/config";
 import { DockerService } from "../service/docker_service";
 
 export class DockerServiceController{
-    static test () {
-        console.log('test')
+    static test (number) {
+        console.log('test'+number)
     }
 
     static container(){

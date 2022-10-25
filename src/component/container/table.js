@@ -2,8 +2,6 @@
 import { useEffect } from "react";
 import {DockerServiceController} from "../../controller/docker_controller";
 import { useState } from "react";
-import rows from "./row";
-
 
 export default function Table() {
   let [ containers, setContainers ] = useState([]);
@@ -12,8 +10,6 @@ export default function Table() {
   useEffect(() => {
     DockerServiceController.container()
     .then(({container_data})=>{
-      console.log(container_data)
-
       setContainers(container_data)}
       )
     .catch(err => console.log(err));
@@ -45,21 +41,16 @@ export default function Table() {
                             <td colspan="2">{container.Config.Image}</td>
                             <td colspan="2">
                             <div class="btn-group" role="group" aria-label="Action">
-                                <button type="button" class="btn btn-success" onclick="">start</button>
-                                <button type="button" class="btn btn-warning" onclick="">stop</button>
-                                <button type="button" class="btn btn-primary" onclick="">restart</button>
-                                <button type="button" class="btn btn-danger" onclick="">remove</button>
+                                <button type="button" class="btn btn-success" onClick={() => { DockerServiceController.start(container.Id) }}>start</button>
+                                <button type="button" class="btn btn-warning" onClick={() => { DockerServiceController.stop(container.Id) }}>stop</button>
+                                <button type="button" class="btn btn-primary" onClick={() => { DockerServiceController.restart(container.Id) }}>restart</button>
+                                <button type="button" class="btn btn-danger" onClick={() => { DockerServiceController.remove(container.Id) }}>remove</button>
                                 <button type="button" class="btn btn-primary" onclick="">scan</button>
                                 <button type="button" class="btn btn-primary" onclick="">sign</button>
                             </div>
                             </td>
                         </tr>
                         );})}
-
-
-
-              {containers.map(container=>{<rows container={container}></rows>})}
-                        
             </tbody>
         </table>
       </div>
