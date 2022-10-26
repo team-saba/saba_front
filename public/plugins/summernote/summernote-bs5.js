@@ -4322,7 +4322,7 @@ var Typing = /*#__PURE__*/function () {
 }();
 
 
-;// CONCATENATED MODULE: ./src/js/editing/Table.js
+;// CONCATENATED MODULE: ./src/js/editing/imageTable.js
 function Table_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function Table_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }

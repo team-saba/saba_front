@@ -63,6 +63,28 @@ export default function AppMenu() {
                   </li>
                 </ul>
               </li>
+
+              <li className="nav-item menu-open">
+                <a href="#" className="nav-link">
+                  <p>
+                    Project
+                    <i className="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul className="nav nav-treeview">
+                  <li className="nav-item">
+                    <a href="./images" className="nav-link">
+                      <p>images</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="./analyis" className="nav-link">
+                      <p>analyis</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
             </ul>
           </nav>
         </div>
