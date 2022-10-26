@@ -1,19 +1,15 @@
-/* eslint-disable */
-
 export default function AppMenu() {
   return (
     <div className="AppMenu">
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="index3.html" class="brand-link">
-          {/* <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"/> */}
           <span class="brand-text font-weight-light">
             <strong>saba</strong> saba
           </span>
         </a>
         <div class="sidebar">
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-            </div>
+            <div class="image"></div>
             <div class="info">
               <a href="#" class="d-block">
                 선용이
@@ -85,7 +81,6 @@ export default function AppMenu() {
                   </li>
                 </ul>
               </li>
-
             </ul>
           </nav>
         </div>
