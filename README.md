@@ -15,3 +15,8 @@
 ##### 연결 상태 확인
  git remote -v 
 
+
+> 풀푸시  
+##### 포크해 온 레포 업데이트
+git fetch upstream 
+git merge upstream/main

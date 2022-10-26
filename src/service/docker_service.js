@@ -22,7 +22,6 @@ export class DockerService {
         contentType: "application/json",
         success: function (data) {
           resJson.container_data = data["containers"];
-          console.log(resJson)
           resolve(resJson);
         },
         error: function (request, status, error) {
