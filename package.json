@@ -42,5 +42,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "> 실행시키고 싶을 때 ##### 레포 클론받아온 이후에 필요 모듈 설치  npm install ###### 시작  npm start",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/team-saba/saba_front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/team-saba/saba_front/issues"
+  },
+  "homepage": "https://github.com/team-saba/saba_front#readme"
 }

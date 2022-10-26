@@ -15,12 +15,14 @@ export class DockerService {
     };
 
     return new Promise(function (resolve, reject) {
+      console.log(SERVER_ADDRESS + "/container" + token)
       $.ajax({
         method: "GET",
-        url: SERVER_ADDRESS + "/container/" + token,
+        url: SERVER_ADDRESS + "/container" + token,
         contentType: "application/json",
         success: function (data) {
           resJson.container_data = data["containers"];
+          console.log(resJson)
           resolve(resJson);
         },
         error: function (request, status, error) {
