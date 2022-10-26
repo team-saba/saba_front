@@ -1,8 +1,5 @@
-import Table from "../elements/table";
-import { containerHeader } from "./Header";
-import React, { useEffect } from "react";
-import {DockerServiceController} from "../controller/docker_controller";
-
+/* eslint-disable */
+import Table from "./table";
 
 export default function Container() {
   return (

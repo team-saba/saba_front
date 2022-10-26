@@ -3,7 +3,7 @@ import AppMenu from "./component/appMenu.js";
 import AppFooter from "./component/appFooter.js";
 import AppMain from "./component/appMain.js";
 import { Route, Routes } from "react-router-dom";
-import Container from "./component/container.js";
+import Container from "./component/container/container.js";
 
 function App() {
   return (
