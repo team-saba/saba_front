@@ -1,9 +1,9 @@
 import { DockerService } from "../service/docker_service";
 
 export class DockerServiceController {
-  static container() {
-    const resJson = DockerService.container();
-    return resJson;
+  static async container() {
+    const container_data = await DockerService.container();
+    return container_data;
   }
 
   static start(container_id) {

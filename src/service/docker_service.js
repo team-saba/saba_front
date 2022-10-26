@@ -1,36 +1,21 @@
 /* eslint-disable */
 import $ from "jquery";
+import axios from 'axios';
 import { SERVER_ADDRESS, token } from "../config/config";
 
 export class DockerService {
-  static container() {
-    const resJson = {
-      state_keys: {
-        running: '<p class="text-white bg-success">실행</p>',
-        exited: '<p class="text-white bg-danger">종료</p>',
-        created: "생성",
-        restarting: "재시작",
-        paused: "일시정지",
-      },
-    };
-
-    return new Promise(function (resolve, reject) {
-      console.log(SERVER_ADDRESS + "/container" + token)
-      $.ajax({
-        method: "GET",
-        url: SERVER_ADDRESS + "/container" + token,
-        contentType: "application/json",
-        success: function (data) {
-          resJson.container_data = data["containers"];
-          console.log(resJson)
-          resolve(resJson);
-        },
-        error: function (request, status, error) {
-          console.log(request, status, error);
-          reject(error);
-        },
-      });
-    });
+  static async container() {
+    await axios.get(SERVER_ADDRESS + "/container" + token)
+    .then(
+          response => {
+            const { containers:container_data } = response.data;
+            console.log(container_data);
+            return container_data;
+          }
+        )
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   static start(container_id) {
@@ -49,6 +34,7 @@ export class DockerService {
       },
     });
   }
+
 
   static stop(container_id) {
     $.ajax({
