@@ -4,6 +4,7 @@ import AppFooter from "./component/appFooter.js";
 import AppMain from "./component/appMain.js";
 import { Route, Routes } from "react-router-dom";
 import Container from "./component/container/container.js";
+import AppImage from "./component/images/appImage.js";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Container />}></Route>
         <Route path="/container" element={<Container />}></Route>
         <Route path="/home" element={<AppMain />}></Route>
+        <Route path="/images" element={<AppImage />}></Route>
       </Routes>
 
       <AppFooter />

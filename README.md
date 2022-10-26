@@ -20,3 +20,14 @@
 ##### 포크해 온 레포 업데이트
 git fetch upstream 
 git merge upstream/main
+---
+
+#### Material UI
+
+Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+
+**npm:**
+
+```sh
+npm install @mui/material @emotion/react @emotion/styled
+```
