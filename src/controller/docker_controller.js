@@ -3,6 +3,7 @@ import { DockerService } from "../service/docker_service";
 export class DockerServiceController {
   static container() {
     const resJson = DockerService.container();
+    console.log('tq '+resJson)
     return resJson;
   }
 

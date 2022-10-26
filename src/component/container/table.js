@@ -31,7 +31,7 @@ export default function Table() {
                 </tr>
             </thead>
             <tbody id="result_data">
-              {containers.map(container=>{
+              {containers?.map(container=>{
                         return (
                           <tr>
                             <th scope="col"> <input class="form-check-input" type="checkbox" id="" name="chk_list"/> </th>
