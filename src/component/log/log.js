@@ -1,4 +1,5 @@
 /* eslint-disable */
+import DataTable from "./dataTable";
 
 export default function Log() {
   return (
@@ -24,6 +25,7 @@ export default function Log() {
                 <br />
               </div>
             </div>
+              <DataTable></DataTable>
           </div>
         </div>
 
