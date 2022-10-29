@@ -25,7 +25,9 @@ export default function Log() {
                 <br />
               </div>
             </div>
+            <div style={{margin:20}}>
               <DataTable></DataTable>
+              </div>
           </div>
         </div>
 

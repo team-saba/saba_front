@@ -8,7 +8,7 @@ const cve_style = {
   width: 800,
   height: 200,
   bgcolor: "background.paper",
-  transform: "translate(10%, -20%)",
+  transform: "translate(15%, -17%)",
 };
 
 const chart_style = {
@@ -40,7 +40,6 @@ export default function Vulnerability() {
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item">
-                        <a href="#">Vulnerability</a>
                       </li>
                     </ol>
                   </div>
