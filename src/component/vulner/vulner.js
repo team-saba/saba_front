@@ -5,7 +5,7 @@ import ContainerTable from "./containerTable";
 
 const cve_style = {
   position: "absolute",
-  width: 600,
+  width: 800,
   height: 200,
   bgcolor: "background.paper",
   transform: "translate(10%, -20%)",
@@ -14,7 +14,7 @@ const cve_style = {
 const chart_style = {
   position: "absolute",
   bgcolor: "background.paper",
-  transform: "translate(150%,-5%)",
+  transform: "translate(140%,-30%)",
 };
 
 const container_style = {
