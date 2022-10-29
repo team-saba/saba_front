@@ -1,4 +1,30 @@
 /* eslint-disable */
+import CveTable from "./cveTable";
+import PieChart from "./pieChart";
+import ContainerTable from "./containerTable";
+
+const cve_style = {
+  position: "absolute",
+  width: 600,
+  height: 200,
+  bgcolor: "background.paper",
+  transform: "translate(10%, -20%)",
+};
+
+const chart_style = {
+  position: "absolute",
+  bgcolor: "background.paper",
+  transform: "translate(150%,-5%)",
+};
+
+const container_style = {
+  width: 1400,
+  height: 400,
+  position: "absolute",
+  bgcolor: "background.paper",
+  transform: "translate(5%, 70%)",
+};
+
 export default function Vulnerability() {
   return (
     <div className="AppSetting">
@@ -23,6 +49,18 @@ export default function Vulnerability() {
                 <br />
               </div>
             </div>
+            <div class="table_top" style={cve_style}>
+              <strong>SabaDev</strong>
+              &nbsp;&nbsp;Vulnerability
+              <CveTable></CveTable>
+            </div>
+            <div class="pie_chart" style={chart_style}>
+              <PieChart></PieChart>
+            </div>
+            <div className="container_table" style={container_style}>
+              <ContainerTable></ContainerTable>
+            </div>
+          
           </div>
         </div>
 
