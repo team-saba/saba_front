@@ -21,8 +21,7 @@ const container_style = {
   width: 1400,
   height: 400,
   position: "absolute",
-  bgcolor: "background.paper",
-  transform: "translate(5%, 70%)",
+  transform: "translate(4%, 60%)",
 };
 
 export default function Vulnerability() {
