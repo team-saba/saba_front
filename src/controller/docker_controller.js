@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { DockerService } from "../service/docker_service";
 
 export class DockerServiceController {
