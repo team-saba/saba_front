@@ -1,21 +1,20 @@
 /* eslint-disable */
-
 import CveTable from "./cveTable";
 import PieChart from "./pieChart";
 import ContainerTable from "./containerTable";
 
 const cve_style = {
   position: "absolute",
-  width: 600,
+  width: 800,
   height: 200,
   bgcolor: "background.paper",
-  transform: "translate(10%, -20%)",
+  transform: "translate(15%, -17%)",
 };
 
 const chart_style = {
   position: "absolute",
   bgcolor: "background.paper",
-  transform: "translate(150%,-5%)",
+  transform: "translate(140%,-30%)",
 };
 
 const container_style = {
@@ -41,7 +40,6 @@ export default function Vulnerability() {
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item">
-                        <a href="#">Vulnerability</a>
                       </li>
                     </ol>
                   </div>
