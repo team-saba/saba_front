@@ -1,4 +1,3 @@
-/* eslint-disable */
 import $ from "jquery";
 import { SERVER_ADDRESS, token } from "../config/config";
 
@@ -15,14 +14,14 @@ export class DockerService {
     };
 
     return new Promise(function (resolve, reject) {
-      console.log(SERVER_ADDRESS + "/container" + token)
+      console.log(SERVER_ADDRESS + "/container" + token);
       $.ajax({
         method: "GET",
         url: SERVER_ADDRESS + "/container" + token,
         contentType: "application/json",
         success: function (data) {
           resJson.container_data = data["containers"];
-          console.log(resJson)
+          console.log(resJson);
           resolve(resJson);
         },
         error: function (request, status, error) {
@@ -41,6 +40,7 @@ export class DockerService {
       contentType: "application/json",
       success: function (data) {
         console.log(data);
+        // eslint-disable-next-line no-undef
         resolve(data);
       },
       error: function (request, status, error) {
@@ -58,6 +58,7 @@ export class DockerService {
       contentType: "application/json",
       success: function (data) {
         console.log(data);
+        // eslint-disable-next-line no-undef
         resolve(data);
       },
       error: function (request, status, error) {

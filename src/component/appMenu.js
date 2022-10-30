@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export default function AppMenu() {
   return (
     <div className="AppMenu">
@@ -12,8 +10,7 @@ export default function AppMenu() {
         </a>
         <div class="sidebar">
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-            </div>
+            <div class="image"></div>
             <div class="info">
               <a href="#" class="d-block">
                 선용이
@@ -84,7 +81,6 @@ export default function AppMenu() {
                   </li>
                 </ul>
               </li>
-
             </ul>
           </nav>
         </div>

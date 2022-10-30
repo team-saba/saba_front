@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import CveTable from "./cveTable";
 import PieChart from "./pieChart";
 import ContainerTable from "./containerTable";

@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
