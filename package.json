@@ -9,11 +9,8 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.11",
     "@mui/x-data-grid": "^5.17.9",
-<<<<<<< HEAD
-=======
     "@nivo/core": "^0.80.0",
     "@nivo/pie": "^0.80.0",
->>>>>>> main
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

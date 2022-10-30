@@ -1,4 +1,3 @@
-/* eslint-disable */
 import DataTable from "./dataTable";
 
 export default function Log() {
@@ -25,9 +24,9 @@ export default function Log() {
                 <br />
               </div>
             </div>
-            <div style={{margin:20}}>
+            <div style={{ margin: 20 }}>
               <DataTable></DataTable>
-              </div>
+            </div>
           </div>
         </div>
 

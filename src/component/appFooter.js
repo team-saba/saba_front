@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default function AppFooter() {
   return (
     <div className="AppFooter">
