@@ -7,6 +7,7 @@ import Container from "./component/container/container.js";
 import AppImage from "./component/images/appImage.js";
 import Vulnerability from "./component/vulner/vulner.js";
 import Log from "./component/log/log.js";
+import AppSigning from "./component/security/appSigning.js";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/images" element={<AppImage />}></Route>
         <Route path="/vulner" element={<Vulnerability />}></Route>
         <Route path="/log" element={<Log />}></Route>
+        <Route path="/keymange" element={<AppSigning />}></Route>
       </Routes>
 
       <AppFooter />

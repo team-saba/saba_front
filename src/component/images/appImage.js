@@ -14,6 +14,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { IconButton } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -21,12 +22,48 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 600,
-  height: 400,
+  height: 300,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
+
+function VerifiedUserIcon(props: { style: { color: string } }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+  );
+}
+
+function check(verified) {
+  if (verified === true) {
+    return (
+      <IconButton aria-label="verified">
+        <VerifiedUserIcon style={{ color: "green" }} />
+      </IconButton>
+    );
+  } else {
+    return (
+      <IconButton aria-label="not verified">
+        <VerifiedUserIcon style={{ color: "red" }} />
+      </IconButton>
+    );
+  }
+}
 
 function createData(
   id: string,
@@ -39,9 +76,9 @@ function createData(
 
 const rows = [
   createData("이미지ID/컨테이너ID", "2022-09-25,13:55:21", true, false),
+  createData("이미지ID/컨테이너ID", "2022-09-25,13:55:21", false, true),
+  createData("이미지ID/컨테이너ID", "2022-09-25,13:55:21", false, false),
   createData("이미지ID/컨테이너ID", "2022-09-25,13:55:21", true, false),
-  createData("이미지ID/컨테이너ID", "2022-09-25,13:55:21", false, false),
-  createData("이미지ID/컨테이너ID", "2022-09-25,13:55:21", false, false),
 ];
 
 export default function AppImage() {
@@ -108,9 +145,11 @@ export default function AppImage() {
                       >
                         <TableCell align="center">{row.id}</TableCell>
                         <TableCell align="center">{row.updateDate}</TableCell>
-                        <TableCell align="center">{row.verified}True</TableCell>
                         <TableCell align="center">
-                          {row.vulnerability}True
+                          {check(row.verified)}
+                        </TableCell>
+                        <TableCell align="center">
+                          {check(row.vulnerability)}
                         </TableCell>
                         <TableCell align="center">
                           <ButtonGroup
@@ -147,9 +186,25 @@ export default function AppImage() {
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             image Signing
+            <Button
+              variant="contained"
+              onClick={signingClose}
+              style={{ float: "right" }}
+            >
+              Signing
+            </Button>
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            이미지 사이닝 이다아아아
+            <div className="form-group">
+              <select className="form-control" id="exampleFormControlSelect1">
+                <option>cosign.key</option>
+                <option>cosign2.key</option>
+                <option>cosign3.key</option>
+              </select>
+            </div>
+            <b>Log</b>
+            <br />
+            <textarea class="form-control" id="Textarea1" rows={3}></textarea>
           </Typography>
         </Box>
       </Modal>

@@ -65,11 +65,6 @@ export default function AppMenu() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="/analyis" className="nav-link">
-                      <p>analyis</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
                     <a href="/vulner" className="nav-link">
                       <p>vulnerability</p>
                     </a>
@@ -77,6 +72,11 @@ export default function AppMenu() {
                   <li className="nav-item">
                     <a href="/log" className="nav-link">
                       <p>Log</p>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a href="/keymange" className="nav-link">
+                      <p>keySinging</p>
                     </a>
                   </li>
                 </ul>
