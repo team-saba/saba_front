@@ -1,16 +1,25 @@
 /* eslint-disable */
+
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+
 const columns = [
-  { field: 'name', headerName: 'name', width: 70 },
-  { field: 'tag', headerName: 'tag', width: 30 },
-  { field: 'status', headerName: 'status', width: 30 },
-  { field: 'vulner', headerName: 'vulner', width: 30 },
-  { field: 'isSigned', headerName: 'isSigned', width: 30 },
+  { field: 'name', headerName: 'name', width: 150 },
+  { field: 'tag', headerName: 'tag', width: 150 },
+  { field: 'status', headerName: 'status', width: 150 },
+  { field: 'vulner', headerName: 'vulner', width: 150 },
+  { field: 'isSigned', headerName: 'isSigned', width: 150 },
 ];
 
 const rows = [
-  // { name: 2, tag: 'Lannister', status: 'Cersei', vulner: 42},
+  { id: 1, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
+  { id: 2, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
+  { id: 3, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
+  { id: 4, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
+  { id: 5, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
+  { id: 6, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
+  { id: 7, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
+  { id: 8, name: '이미지ID/컨테이너ID', tag: 'latest', status: 'running', vulner: 'false', isSigned: 'true' },
 ];
 
 
