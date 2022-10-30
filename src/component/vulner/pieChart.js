@@ -1,20 +1,80 @@
 /* eslint-disable */
-
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import { ResponsivePie } from '@nivo/pie';
 
-export default function PieChart() {
-  return (
-    <Box
-      sx={{
-        width: 500,
-        height: 200,
-        backgroundColor: 'primary.dark',
-        '&:hover': {
-          backgroundColor: 'primary.main',
-          opacity: [0.9, 0.8, 0.7],
+const PieChart = () => {
+    const handle = {
+        padClick: (data) => {
+            console.log(data);
         },
-      }}
-    >pie chart 가 들어갈 자리입니다^^</Box>
-  );
-}
+
+        legendClick: (data) => {
+            console.log(data);
+        },
+    };
+
+    return (
+        <div style={{ width: '600px', height: '330px' }}>
+            <ResponsivePie
+                data={[
+                    { id: 'critical', value: 10 },
+                    { id: 'medium', value: 88 },
+                    { id: 'low', value: 221 },
+                ]}
+                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                innerRadius={0.5}
+                padAngle={1.8}
+                cornerRadius={8}
+                colors={['red', 'orange', 'olive']}
+                borderWidth={0}
+                arcLinkLabelsSkipAngle={0}
+                arcLinkLabelsTextColor="#000000"
+                arcLinkLabelsThickness={2}
+                arcLinkLabelsColor={{ from: 'color' }}
+                arcLabelsSkipAngle={10}
+                theme={{
+                    labels: {
+                        text: {
+                            fontSize: 14,
+                            fill: '#000000',
+                        },
+                    },
+                    legends: {
+                        text: {
+                            fontSize: 12,
+                            fill: '#000000',
+                        },
+                    },
+                }}
+                onClick={handle.padClick}
+                legends={[
+                    {
+                        anchor: 'bottom',
+                        direction: 'row',
+                        justify: false,
+                        translateX: 0,
+                        translateY: 56,
+                        itemsSpacing: 0,
+                        itemWidth: 100,
+                        itemHeight: 18,
+                        itemDirection: 'left-to-right',
+                        itemOpacity: 1,
+                        symbolSize: 18,
+                        symbolShape: 'circle',
+                        effects: [
+                            {
+                              on: 'hover',
+                              style: {
+                                  itemTextColor: 'olive',
+                              },
+                            },
+                        ],
+                        onClick: handle.legendClick,
+                    },
+                ]}
+            />
+        </div>
+    );
+};
+
+export default PieChart;
