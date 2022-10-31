@@ -1,5 +1,6 @@
 import $ from "jquery";
 import { SERVER_ADDRESS, token } from "../config/config";
+import { apiCall } from "./baseAPI";
 
 export class DockerService {
   static container() {
@@ -15,20 +16,21 @@ export class DockerService {
 
     return new Promise(function (resolve, reject) {
       console.log(SERVER_ADDRESS + "/container" + token);
-      $.ajax({
-        method: "GET",
-        url: SERVER_ADDRESS + "/container" + token,
-        contentType: "application/json",
-        success: function (data) {
-          resJson.container_data = data["containers"];
-          console.log(resJson);
+      apiCall(
+        "GET",
+        "/container",
+        {},
+        {},
+        function (res) {
+          console.log(res);
+          resJson["container"] = res;
           resolve(resJson);
         },
-        error: function (request, status, error) {
-          console.log(request, status, error);
-          reject(error);
-        },
-      });
+        function (err) {
+          console.log(err);
+          reject(err);
+        }
+      );
     });
   }
 
