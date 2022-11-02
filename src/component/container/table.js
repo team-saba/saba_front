@@ -9,8 +9,9 @@ export default function Table() {
 
   useEffect(() => {
     DockerServiceController.container()
-    .then(({container_data})=>{
-      setContainers(container_data)}
+    .then(({containers})=>{
+      setContainers(containers)
+    }
       )
     .catch(err => console.log(err));
   }, []);
