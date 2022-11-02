@@ -1,7 +1,5 @@
 /* eslint-disable */
-import $ from "jquery";
 import { SERVER_ADDRESS, token } from "../config/config";
-import axios from "axios";
 import instance from "./axiosConfig";
 
 export class DockerService {
