@@ -1,6 +1,8 @@
+/* eslint-disable */
 import $ from "jquery";
 import { SERVER_ADDRESS, token } from "../config/config";
-import { apiCall } from "./baseAPI";
+import axios from "axios";
+import instance from "./axiosConfig";
 
 export class DockerService {
   static container() {
@@ -13,25 +15,12 @@ export class DockerService {
         paused: "일시정지",
       },
     };
-
-    return new Promise(function (resolve, reject) {
-      console.log(SERVER_ADDRESS + "/container" + token);
-      apiCall(
-        "GET",
-        "/container",
-        {},
-        {},
-        function (res) {
-          console.log(res);
-          resJson["container"] = res;
-          resolve(resJson);
-        },
-        function (err) {
-          console.log(err);
-          reject(err);
-        }
-      );
-    });
+    return new Promise((resolve, reject) => {
+        instance.get("/container" + token).then((res) => {
+          console.log(res.data);
+          resolve(res.data);
+        });
+    })
   }
 
   static start(container_id) {
