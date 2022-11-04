@@ -109,8 +109,10 @@ const columns = [
             variant="contained"
             onClick={() => {
               //modal open
-              alert("modal open");
-              DockerServiceController.scan(params.row.Name);
+              DockerServiceController.scan(params.row.Name).then((res) => {
+                console.log(res);
+                //  res data 모달로 만들기
+              });
             }}
           >
             check vulnerability
