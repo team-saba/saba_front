@@ -5,7 +5,7 @@ import instance from "./axiosConfig";
 export class DockerService {
   static container() {
     return new Promise((resolve, reject) => {
-      instance.get("/container" + token).then((res) => {
+      instance.get("/container/" + token).then((res) => {
         if (!res.data) reject(new Error(500));
         resolve(res.data);
       });
