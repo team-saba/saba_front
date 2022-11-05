@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { SERVER_ADDRESS, token } from "../config/config";
+import { token } from "../config/config";
 import instance from "./axiosConfig";
 
 export class DockerService {
@@ -51,6 +51,25 @@ export class DockerService {
           if (!res.data) reject(new Error(500));
           resolve(res.data);
         });
+    });
+  }
+
+  //  image
+  static image() {
+    return new Promise((resolve, reject) => {
+      instance.get("/image/").then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
+    });
+  }
+
+  static scan(image_id) {
+    return new Promise((resolve, reject) => {
+      instance.post("/image/scan", { image_id }).then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
     });
   }
 }
