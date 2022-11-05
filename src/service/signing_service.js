@@ -34,10 +34,36 @@ export class SigningService {
 
   static checkLoginId(id) {
     return new Promise((resolve, reject) => {
-      instance.post("/image/docker_login_id_check").then((res) => {
-        if (!res.data) reject(new Error(500));
-        resolve(res.data);
-      });
+      instance
+        .post("/image/docker_login_id_check", null, { params: { id: id } })
+        .then((res) => {
+          if (!res.data) reject(new Error(500));
+          resolve(res.data);
+        });
+    });
+  }
+
+  static keyGen(pw) {
+    return new Promise((resolve, reject) => {
+      instance
+        .post("/image/keygen", null, { params: { password: pw } })
+        .then((res) => {
+          if (!res.data) reject(new Error(500));
+          resolve(res.data);
+        });
+    });
+  }
+
+  static keyDel(pw) {
+    return new Promise((resolve, reject) => {
+      instance
+        .post("/image/keydel", null, {
+          params: { password: pw },
+        })
+        .then((res) => {
+          if (!res.data) reject(new Error(500));
+          resolve(res.data);
+        });
     });
   }
 }

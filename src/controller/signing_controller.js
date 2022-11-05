@@ -32,4 +32,25 @@ export class SigningServiceController {
     // const resJson = SigningService.checkLoginId(id);
     // return resJson;
   }
+
+  static keyGen(pw) {
+    alert("현재 InternalServerError 뜸");
+    // if (typeof pw == "undefined" || pw == null || pw == "") {
+    //   alert("키 생성 비밀번호를 입력해주세요");
+    //   return;
+    // }
+    // const resJson = SigningService.keyGen(pw);
+    // return resJson;
+  }
+
+  static async keyDel(pw) {
+    if (typeof pw == "undefined" || pw == null || pw == "") {
+      alert("키 생성 비밀번호를 입력해주세요");
+      return;
+    }
+    const resJson = await SigningService.keyDel(pw);
+    console.log(resJson);
+    alert(resJson);
+    return resJson;
+  }
 }
