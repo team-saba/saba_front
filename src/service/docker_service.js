@@ -62,13 +62,4 @@ export class DockerService {
       });
     });
   }
-
-  static scanList() {
-    return new Promise((resolve, reject) => {
-      instance.get("/scan/").then((res) => {
-        if (!res.data) reject(new Error(500));
-        resolve(res.data);
-      });
-    });
-  }
 }

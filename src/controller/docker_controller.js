@@ -30,9 +30,4 @@ export class DockerServiceController {
     const resJson = DockerService.image();
     return resJson;
   }
-
-  static scanList() {
-    const resJson = DockerService.scanList();
-    return resJson;
-  }
 }

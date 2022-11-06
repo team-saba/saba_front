@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import { IconButton } from "@mui/material";
 import { VerifiedUserIcon } from "../element";
 import { useEffect, useState } from "react";
-import { DockerServiceController } from "../../controller/docker_controller";
+import { VulnerServiceController } from "../../controller/vulner_controller";
 
 const columns = [
   {
@@ -96,16 +96,23 @@ const columns = [
     renderCell: (params) => {
       if (params.value == null) {
         return (
-          <IconButton aria-label="verified">
-            <VerifiedUserIcon style={{ color: "gray" }} />
-          </IconButton>
+          <Button
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              VulnerServiceController.scanImage(params.row.Name);
+            }}
+          >
+            scan
+          </Button>
         );
       } else {
         return (
           <IconButton
             aria-label="verified"
             onClick={() => {
-              alert(params.row.Name);
+              alert("스캔 기능 넣을 예정\n*무지성 클릭 방지");
             }}
           >
             <VerifiedUserIcon style={{ color: "red" }} />
@@ -121,7 +128,6 @@ const columns = [
     renderCell: (params) => {
       if (params.row.vulnerability != null) {
         //vulnerability scan_result[i] Severity count
-        console.log(params.row.vulnerability);
         var scan_result = params.row.vulnerability["scan_result"];
         var Critical = 0;
         var High = 0;
@@ -156,7 +162,7 @@ const columns = [
               Low {Low}
             </Button>
             <Button size="small" color="inherit" variant="contained">
-              Unknown {Unknown}
+              ETC {Unknown}
             </Button>
           </Stack>
         );
@@ -188,7 +194,7 @@ export default function ContainerTable() {
   let [scanList, setScanList] = useState([]);
 
   useEffect(() => {
-    DockerServiceController.scanList()
+    VulnerServiceController.scanList()
       .then(({ scanList }) => {
         setScanList(scanList);
       })
@@ -196,14 +202,14 @@ export default function ContainerTable() {
   }, []);
 
   return (
-    <div style={{ height: 800, width: "100%", backgroundColor: "white" }}>
+    <div style={{ height: 950, width: "100%", backgroundColor: "white" }}>
       <DataGrid
         rowHeight={80}
         rows={scanList}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        checkboxSelection
+        disableSelectionOnClick
       />
     </div>
   );

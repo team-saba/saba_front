@@ -8,7 +8,6 @@ export default function AppCve() {
   // 파라미터값 가져오기
   const params = new URLSearchParams(window.location.search);
   const imageId = params.get("imageId");
-  console.log("imageId : " + imageId);
   return (
     <div className="AppSetting">
       <containerHeader></containerHeader>
@@ -19,7 +18,7 @@ export default function AppCve() {
               <div class="container-fluid">
                 <div class="row mb-2">
                   <div class="col-sm-6">
-                    <h1 class="m-0">CVE Report</h1>
+                    <h1 class="m-0">Scan Report</h1>
                     <h6 class="m-0">Image ID : {imageId}</h6>
                   </div>
                   <div class="col-sm-6">

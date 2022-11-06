@@ -3,6 +3,7 @@
 import CveTable from "./cveTable";
 import ContainerTable from "./containerTable";
 import * as React from "react";
+import { VulnerServiceController } from "../../controller/vulner_controller";
 
 export default function Vulnerability() {
   return (
@@ -26,6 +27,15 @@ export default function Vulnerability() {
                 <br />
               </div>
             </div>
+            {/*<button*/}
+            {/*  type="button"*/}
+            {/*  className="btn btn-success"*/}
+            {/*  onClick={() => {*/}
+            {/*    VulnerServiceController.scanImage();*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  scan*/}
+            {/*</button>*/}
             <ContainerTable></ContainerTable>
           </div>
         </div>
