@@ -29,7 +29,8 @@ export default function Vulnerability() {
           ) {
             btnElement[i].innerText = "complete";
             btnElement[i].color = "warning";
-            btnElement[i].onclick = "location.reload()";
+            btnElement[i].setAttribute("onClick", "location.reload();");
+            btnElement[i].style.backgroundColor = "#a1e788";
           }
         }
       })
@@ -62,19 +63,15 @@ export default function Vulnerability() {
                 <br />
               </div>
             </div>
+            {/*react 새로고침 아이콘*/}
             <button
               type="button"
-              id={"btn"}
-              className="btn btn-success"
+              class="btn btn-primary"
               onClick={() => {
-                VulnerServiceController.scanImage();
-                const btn = document.getElementById("btn");
-                btn.innerText = "Scanning...";
-                //  btn color change
-                btn.style.backgroundColor = "gray";
+                window.location.href = "/vulner";
               }}
             >
-              scan
+              <i class="fas fa-sync-alt"></i>
             </button>
             <ContainerTable></ContainerTable>
           </div>
