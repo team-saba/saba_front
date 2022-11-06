@@ -82,7 +82,7 @@ export default function CveTable() {
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <TableContainer sx={{ maxHeight: 230 }}>
+      <TableContainer sx={{ height: 800 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead align="right">
             <TableRow align="right" style={{ align: "right" }}>

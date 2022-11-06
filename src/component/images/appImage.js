@@ -73,22 +73,6 @@ export default function AppImage() {
       {/*    </Typography>*/}
       {/*  </Box>*/}
       {/*</Modal>*/}
-
-      {/*<Modal*/}
-      {/*  open={vuln}*/}
-      {/*  onClose={vulnClose}*/}
-      {/*  aria-labelledby="modal-modal-title"*/}
-      {/*  aria-describedby="modal-modal-description"*/}
-      {/*>*/}
-      {/*  <Box sx={style}>*/}
-      {/*    <Typography id="modal-modal-title" variant="h6" component="h2">*/}
-      {/*      check vulnerability*/}
-      {/*    </Typography>*/}
-      {/*    <Typography id="modal-modal-description" sx={{ mt: 2 }}>*/}
-      {/*      취약점 검사 이다아아아아*/}
-      {/*    </Typography>*/}
-      {/*  </Box>*/}
-      {/*</Modal>*/}
     </div>
   );
 }
