@@ -143,6 +143,7 @@ export default function iamgeTable() {
         pageSize={10}
         rowsPerPageOptions={[10]}
         checkboxSelection
+        disableSelectionOnClick
       />
     </div>
   );
