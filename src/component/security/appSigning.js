@@ -1,4 +1,8 @@
 import { containerHeader } from "../Header";
+import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import { SigningServiceController } from "../../controller/signing_controller";
+import TextField from "@mui/material/TextField";
 
 import React from "react";
 import ContainerTable from "./containerTable";
@@ -22,8 +26,11 @@ const style = {
 
 export default function AppSigning() {
   const [open, openSet] = React.useState(false);
+  const [id, setId] = React.useState();
+  const [pw, setPw] = React.useState();
   const keyOpen = () => openSet(true);
   const keyClose = () => openSet(false);
+
   return (
     <div className="AppSetting">
       <containerHeader></containerHeader>
@@ -48,6 +55,37 @@ export default function AppSigning() {
               </div>
             </div>
             <div className="content">
+              <Button variant="contained" id={"keymodal"} onClick={keyOpen}>
+                Login
+              </Button>
+
+              <Button
+                variant="contained"
+                id={"keymodal"}
+                onClick={() => {
+                  SigningServiceController.logout();
+                }}
+              >
+                Logout
+              </Button>
+              <Button
+                variant="contained"
+                id={"keymodal"}
+                onClick={() => {
+                  SigningServiceController.checkLogin();
+                }}
+              >
+                LoginCheck
+              </Button>
+              <Button
+                variant="contained"
+                id={"keymodal"}
+                onClick={() => {
+                  SigningServiceController.checkLoginId("cpplovelove");
+                }}
+              >
+                LoginIdCheck
+              </Button>
               <CustomizedTooltips />
               <ContainerTable></ContainerTable>
             </div>
@@ -69,10 +107,40 @@ export default function AppSigning() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            check vulnerability
+            Login to dockerHub
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            취약점 검사 이다아아아아
+            Login
+            <TextField
+              id="outlined-basic"
+              label="Outlined"
+              variant="outlined"
+              onChange={(newValue) => setId(newValue.target.value)}
+            />
+            pw
+            <TextField
+              id="outlined-basic"
+              label="Outlined"
+              variant="outlined"
+              onChange={(newValue) => setPw(newValue.target.value)}
+            />
+            <Button
+              variant="contained"
+              id={"keymodal"}
+              onClick={() => {
+                SigningServiceController.login(id, pw);
+              }}
+            >
+              Login
+            </Button>
+            <Button
+              variant="contained"
+              id={"keymodal"}
+              onClick={keyClose}
+              color="error"
+            >
+              close
+            </Button>
           </Typography>
         </Box>
       </Modal>
