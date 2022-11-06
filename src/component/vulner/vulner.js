@@ -4,8 +4,43 @@ import CveTable from "./cveTable";
 import ContainerTable from "./containerTable";
 import * as React from "react";
 import { VulnerServiceController } from "../../controller/vulner_controller";
+import { useEffect, useState } from "react";
 
 export default function Vulnerability() {
+  let [QueueList, setQueueList] = useState([]);
+  let [scanList, setScanList] = useState([]);
+
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    VulnerServiceController.scanQueueList()
+      .then(() => {
+        setQueueList(QueueList);
+        const btnElement = document.getElementsByClassName("scanBtn");
+        for (var i = 0; i < btnElement.length; i++) {
+          for (var j = 0; j < QueueList.length; j++) {
+            if (btnElement[i].id == QueueList[j].imageId) {
+              btnElement[i].innerText = "Scanning";
+              btnElement[i].color = "success";
+            }
+          }
+          if (
+            btnElement[i].innerText === "SCANNING" &&
+            QueueList.length === 0
+          ) {
+            btnElement[i].innerText = "complete";
+            btnElement[i].color = "warning";
+            btnElement[i].onclick = "location.reload()";
+          }
+        }
+      })
+      .catch((err) => console.log(err));
+
+    const timer = setInterval(() => {
+      setCount(count + 1);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [count]);
+
   return (
     <div className="AppSetting">
       <containerHeader></containerHeader>
@@ -27,15 +62,20 @@ export default function Vulnerability() {
                 <br />
               </div>
             </div>
-            {/*<button*/}
-            {/*  type="button"*/}
-            {/*  className="btn btn-success"*/}
-            {/*  onClick={() => {*/}
-            {/*    VulnerServiceController.scanImage();*/}
-            {/*  }}*/}
-            {/*>*/}
-            {/*  scan*/}
-            {/*</button>*/}
+            <button
+              type="button"
+              id={"btn"}
+              className="btn btn-success"
+              onClick={() => {
+                VulnerServiceController.scanImage();
+                const btn = document.getElementById("btn");
+                btn.innerText = "Scanning...";
+                //  btn color change
+                btn.style.backgroundColor = "gray";
+              }}
+            >
+              scan
+            </button>
             <ContainerTable></ContainerTable>
           </div>
         </div>

@@ -8,6 +8,7 @@ export default function AppCve() {
   // 파라미터값 가져오기
   const params = new URLSearchParams(window.location.search);
   const imageId = params.get("imageId");
+
   return (
     <div className="AppSetting">
       <containerHeader></containerHeader>

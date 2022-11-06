@@ -94,14 +94,22 @@ const columns = [
     headerName: "vulnerability",
     width: 100,
     renderCell: (params) => {
+      // QueueList = [{'uuid': 'uuid', 'imageId': 'imageId'},{'uuid': 'uuid', 'imageId': 'imageId'}]
+
       if (params.value == null) {
         return (
           <Button
+            id={params.row.Name}
+            className="scanBtn"
             size="small"
             variant="contained"
             color="primary"
             onClick={() => {
               VulnerServiceController.scanImage(params.row.Name);
+              const btnElement = document.getElementById(params.row.Name);
+              // 버튼 scan 에서 실행중으로 변경
+              btnElement.innerText = "Scanning";
+              btnElement.color = "success";
             }}
           >
             scan
