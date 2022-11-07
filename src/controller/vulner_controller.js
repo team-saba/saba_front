@@ -15,4 +15,9 @@ export class VulnerServiceController {
     const resJson = VulnerService.scanResult(imageName);
     return resJson;
   }
+
+  static scanQueueList() {
+    const resJson = VulnerService.scanQueueList();
+    return resJson;
+  }
 }

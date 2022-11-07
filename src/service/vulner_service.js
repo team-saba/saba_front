@@ -29,4 +29,13 @@ export class VulnerService {
       });
     });
   }
+
+  static scanQueueList(imageId) {
+    return new Promise((resolve, reject) => {
+      instance.get("/scan/list_reservation_process").then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
+    });
+  }
 }
