@@ -1,8 +1,6 @@
 /* eslint-disable */
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import * as React from "react";
+import Button from "@mui/material/Button";
 import { IconButton } from "@mui/material";
 
 function VerifiedUserIcon(props: { style: { color: string } }) {
@@ -41,5 +39,21 @@ function check(verified) {
   }
 }
 
+function isRunning(status) {
+  console.log(status);
+  if (status === "RUNNING") {
+    return (
+      <Button size="small" color="success" variant="contained">
+        {status}
+      </Button>
+    );
+  } else {
+    return (
+      <Button size="small" color="error" variant="contained">
+        {status}
+      </Button>
+    );
+  }
+}
 
-export { VerifiedUserIcon, check}
+export { VerifiedUserIcon, check, isRunning };
