@@ -1,11 +1,10 @@
-/* eslint-disable */
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { IconButton } from "@mui/material";
 import { VerifiedUserIcon } from "../element";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { VulnerServiceController } from "../../controller/vulner_controller";
 
 const columns = [
@@ -74,7 +73,7 @@ const columns = [
     headerName: "isSigned",
     width: 100,
     renderCell: (params) => {
-      if (params.formattedValue == "true") {
+      if (params.formattedValue === "true") {
         return (
           <IconButton aria-label="verified">
             <VerifiedUserIcon style={{ color: "green" }} />
@@ -95,37 +94,44 @@ const columns = [
     width: 100,
     renderCell: (params) => {
       // QueueList = [{'uuid': 'uuid', 'imageId': 'imageId'},{'uuid': 'uuid', 'imageId': 'imageId'}]
-
-      if (params.value == null) {
+      if (params.row.state === "scanning") {
         return (
-          <Button
-            id={params.row.Name}
-            className="scanBtn"
-            size="small"
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              VulnerServiceController.scanImage(params.row.Name);
-              const btnElement = document.getElementById(params.row.Name);
-              // 버튼 scan 에서 실행중으로 변경
-              btnElement.innerText = "Scanning";
-              btnElement.color = "success";
-            }}
-          >
-            scan
+          <Button size="small" variant="contained" color="success">
+            Scanning
           </Button>
         );
       } else {
-        return (
-          <IconButton
-            aria-label="verified"
-            onClick={() => {
-              alert("스캔 기능 넣을 예정\n*무지성 클릭 방지");
-            }}
-          >
-            <VerifiedUserIcon style={{ color: "red" }} />
-          </IconButton>
-        );
+        if (params.value == null) {
+          return (
+            <Button
+              id={params.row.Name}
+              className="scanBtn"
+              size="small"
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                VulnerServiceController.scanImage(params.row.Name);
+                const btnElement = document.getElementById(params.row.Name);
+                // 버튼 scan 에서 실행중으로 변경
+                btnElement.innerText = "Scanning";
+                btnElement.color = "success";
+              }}
+            >
+              scan
+            </Button>
+          );
+        } else {
+          return (
+            <IconButton
+              aria-label="verified"
+              onClick={() => {
+                alert("스캔 기능 넣을 예정\n*무지성 클릭 방지");
+              }}
+            >
+              <VerifiedUserIcon style={{ color: "red" }} />
+            </IconButton>
+          );
+        }
       }
     },
   },
@@ -143,11 +149,11 @@ const columns = [
         var Low = 0;
         var Unknown = 0;
         for (var i = 0; i < scan_result.length; i++) {
-          if (scan_result[i].Severity == "CRITICAL") {
+          if (scan_result[i].Severity === "CRITICAL") {
             Critical++;
-          } else if (scan_result[i].Severity == "HIGH") {
+          } else if (scan_result[i].Severity === "HIGH") {
             High++;
-          } else if (scan_result[i].Severity == "MEDIUM") {
+          } else if (scan_result[i].Severity === "MEDIUM") {
             Medium++;
           } else if (scan_result[i].Severity == "LOW") {
             Low++;
@@ -199,15 +205,27 @@ const columns = [
 ];
 
 export default function ContainerTable() {
-  let [scanList, setScanList] = useState([]);
-
+  const [scanList, setScanList] = useState([]);
+  const [QueueList, setQueueList] = useState([]);
   useEffect(() => {
-    VulnerServiceController.scanList()
-      .then(({ scanList }) => {
+    const interval = setInterval(() => {
+      VulnerServiceController.scanQueueList().then(({ QueueList }) => {
+        setQueueList(QueueList);
+      });
+      VulnerServiceController.scanList().then(({ scanList }) => {
         setScanList(scanList);
-      })
-      .catch((err) => console.log(err));
+      });
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
+
+  for (var i = 0; i < QueueList.length; i++) {
+    for (var j = 0; j < scanList.length; j++) {
+      if (QueueList[i].imageId === scanList[j].Name) {
+        scanList[j].state = "scanning";
+      }
+    }
+  }
 
   return (
     <div style={{ height: 950, width: "100%", backgroundColor: "white" }}>
