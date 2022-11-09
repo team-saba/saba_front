@@ -50,8 +50,7 @@ export default function Table() {
                 add container
               </Button>
             </th>
-            <th scope="col" colspan="3"></th>
-            <th scope="col" colspan="7">
+            <th scope="col" colspan="10">
               <div class="btn-group" role="group" aria-label="Action">
                 <button
                   type="button"
@@ -88,6 +87,22 @@ export default function Table() {
                   }}
                 >
                   remove
+                </button>
+                {/* //Kill pause resume rename exec */}
+                <button type="button" class="btn btn-primary" onclick="">
+                  kill
+                </button>
+                <button type="button" class="btn btn-primary" onclick="">
+                  pause
+                </button>
+                <button type="button" class="btn btn-primary" onclick="">
+                  resume
+                </button>
+                <button type="button" class="btn btn-primary" onclick="">
+                  rename
+                </button>
+                <button type="button" class="btn btn-primary" onclick="">
+                  exec
                 </button>
                 <button type="button" class="btn btn-primary" onclick="">
                   scan
