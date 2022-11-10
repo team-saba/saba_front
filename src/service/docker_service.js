@@ -5,7 +5,7 @@ import instance from "./axiosConfig";
 export class DockerService {
   static container() {
     return new Promise((resolve, reject) => {
-      instance.get("/container/" + token).then((res) => {
+      instance.get("/container/").then((res) => {
         if (!res.data) reject(new Error(500));
         resolve(res.data);
       });
@@ -57,6 +57,61 @@ export class DockerService {
   static image() {
     return new Promise((resolve, reject) => {
       instance.get("/image/" + token).then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
+    });
+  }
+
+  static kill(container_id) {
+    return new Promise((resolve, reject) => {
+      instance.post("/container/kill" + token, { container_id }).then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
+    });
+  }
+
+  static pause(container_id) {
+    return new Promise((resolve, reject) => {
+      instance
+        .post("/container/pause" + token, { container_id })
+        .then((res) => {
+          if (!res.data) reject(new Error(500));
+          resolve(res.data);
+        });
+    });
+  }
+
+  static resume(container_id) {
+    return new Promise((resolve, reject) => {
+      instance
+        .post("/container/resume" + token, { container_id })
+        .then((res) => {
+          if (!res.data) reject(new Error(500));
+          resolve(res.data);
+        });
+    });
+  }
+
+  static rename(container_id, new_name) {
+    return new Promise((resolve, reject) => {
+      instance
+        .post(
+          "/container/rename" + token,
+          { params: { new_name: new_name } },
+          { container_id }
+        )
+        .then((res) => {
+          if (!res.data) reject(new Error(500));
+          resolve(res.data);
+        });
+    });
+  }
+
+  static exec(container_id) {
+    return new Promise((resolve, reject) => {
+      instance.post("/container/exec" + token, { container_id }).then((res) => {
         if (!res.data) reject(new Error(500));
         resolve(res.data);
       });

@@ -148,9 +148,6 @@ export default function Table() {
               Created
             </th>
             <th scope="col" colspan="2">
-              command
-            </th>
-            <th scope="col" colspan="2">
               IP Address
             </th>
             <th scope="col" colspan="2">
@@ -170,18 +167,18 @@ export default function Table() {
                     name="chk_list"
                   />
                 </th>
-                <td>{container.Name}</td>
+                <td>name</td>
                 <td colspan="2" style={style}>
                   verified icon
                 </td>
-                <td colspan="3">{container.State.Status}</td>
+                {/* <td colspan="3">{container.State.Status}</td> */}
+                <td colspan="3">{container.Status}</td>
                 <td colspan="2">quickAction</td>
                 <td colspan="2">stack</td>
-                <td colspan="2">{container.Config.Image}</td>
-                <td colspan="2">createdDate</td>
-                <td colspan="2">temp</td>
-                <td colspan="2">temp</td>
-                <td colspan="2">temp</td>
+                <td colspan="2">{container.Image}</td>
+                <td colspan="2">{container["Created Time"]}</td>
+                <td colspan="2">{container.IPAddress}</td>
+                <td colspan="2">{Object.keys(container.Port)[0]}</td>
               </tr>
             );
           })}

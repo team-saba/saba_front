@@ -30,4 +30,26 @@ export class DockerServiceController {
     const resJson = DockerService.image();
     return resJson;
   }
+
+  static kill(container_id) {
+    const resJson = DockerService.kill(container_id);
+    return resJson;
+  }
+  static pause(container_id) {
+    const resJson = DockerService.pause(container_id);
+    return resJson;
+  }
+  static resume(container_id) {
+    const resJson = DockerService.resume(container_id);
+    return resJson;
+  }
+  static rename(container_id, new_name) {
+    const resJson = DockerService.rename(container_id, new_name);
+    return resJson;
+  }
+
+  static exec(container_id) {
+    const resJson = DockerService.exec(container_id);
+    return resJson;
+  }
 }
