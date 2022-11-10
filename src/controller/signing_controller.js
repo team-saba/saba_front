@@ -9,10 +9,10 @@ export class SigningServiceController {
     return resJson;
   }
 
-  static logout() {
-    alert("현재 InternalServerError 뜸");
-    // const resJson = SigningService.logout();
-    // return resJson;
+  static async logout() {
+    const resJson = await SigningService.logout();
+    alert(resJson);
+    return resJson;
   }
 
   static async checkLogin() {
