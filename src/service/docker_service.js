@@ -108,8 +108,8 @@ export class DockerService {
       instance
         .post(
           "/container/rename" + token,
-          { params: { new_name: new_name } },
-          { container_id }
+          { container_id },
+          { params: { new_name } }
         )
         .then((res) => {
           if (!res.data) reject(new Error(500));
