@@ -2,22 +2,18 @@ import { VulnerService } from "../service/vulner_service";
 
 export class VulnerServiceController {
   static scanList() {
-    const resJson = VulnerService.scanList();
-    return resJson;
+    return VulnerService.scanList();
   }
 
   static scanImage(imageName) {
-    const resJson = VulnerService.scanImage(imageName);
-    return resJson;
+    return VulnerService.scanImage(imageName);
   }
 
   static scanResult(imageName) {
-    const resJson = VulnerService.scanResult(imageName);
-    return resJson;
+    return VulnerService.scanResult(imageName);
   }
 
   static scanQueueList() {
-    const resJson = VulnerService.scanQueueList();
-    return resJson;
+    return VulnerService.scanQueueList();
   }
 }

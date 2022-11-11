@@ -6,6 +6,11 @@ export class DockerServiceController {
     return resJson;
   }
 
+  static remoteContainer() {
+    const resJson = DockerService.remoteContainer();
+    return resJson;
+  }
+
   static start(container_id) {
     const resJson = DockerService.start(container_id);
     return resJson;
