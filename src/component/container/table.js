@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 
 export default function Table() {
   let [containers, setContainers] = useState([]);
+  let [container_id, setContainerId] = useState();
   const style = { color: "green" };
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function Table() {
                   type="button"
                   class="btn btn-success"
                   onClick={() => {
-                    DockerServiceController.start(container.Id);
+                    DockerServiceController.start(container_id);
                   }}
                 >
                   start
@@ -65,7 +66,7 @@ export default function Table() {
                   type="button"
                   class="btn btn-warning"
                   onClick={() => {
-                    DockerServiceController.stop(container.Id);
+                    DockerServiceController.stop(container_id);
                   }}
                 >
                   stop
@@ -74,7 +75,7 @@ export default function Table() {
                   type="button"
                   class="btn btn-primary"
                   onClick={() => {
-                    DockerServiceController.restart(container.Id);
+                    DockerServiceController.restart(container_id);
                   }}
                 >
                   restart
@@ -83,7 +84,7 @@ export default function Table() {
                   type="button"
                   class="btn btn-danger"
                   onClick={() => {
-                    DockerServiceController.remove(container.Id);
+                    DockerServiceController.remove(container_id);
                   }}
                 >
                   remove
@@ -163,15 +164,15 @@ export default function Table() {
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    id=""
                     name="chk_list"
+                    value={container.CONTAINER_ID}
+                    onChange={() => setContainerId(container.CONTAINER_ID)}
                   />
                 </th>
-                <td>name</td>
+                <td>{container.Name.replace("/", "")}</td>
                 <td colspan="2" style={style}>
                   verified icon
                 </td>
-                {/* <td colspan="3">{container.State.Status}</td> */}
                 <td colspan="3">{container.Status}</td>
                 <td colspan="2">quickAction</td>
                 <td colspan="2">stack</td>
