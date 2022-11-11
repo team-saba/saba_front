@@ -12,6 +12,15 @@ export class DockerService {
     });
   }
 
+  static remoteContainer() {
+    return new Promise((resolve, reject) => {
+      instance.get("/remote/container").then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
+    });
+  }
+
   static start(container_id) {
     return new Promise((resolve, reject) => {
       instance

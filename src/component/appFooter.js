@@ -3,7 +3,7 @@ export default function AppFooter() {
     <div className="AppFooter">
       <footer class="main-footer">
         <strong>
-          <a href="https://adminlte.io">AdminLTE.io</a>
+          <a href="https://www.kitribob.wiki/">Team_Saba</a>
         </strong>
         All rights reserved.
       </footer>
