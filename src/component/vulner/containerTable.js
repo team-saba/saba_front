@@ -207,6 +207,9 @@ const columns = [
 export default function ContainerTable() {
   const [scanList, setScanList] = useState([]);
   const [QueueList, setQueueList] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const interval = setInterval(() => {
       VulnerServiceController.scanQueueList().then(({ QueueList }) => {
@@ -214,6 +217,7 @@ export default function ContainerTable() {
       });
       VulnerServiceController.scanList().then(({ scanList }) => {
         setScanList(scanList);
+        setLoading(false);
       });
     }, 3000);
     return () => clearInterval(interval);
@@ -226,6 +230,8 @@ export default function ContainerTable() {
       }
     }
   }
+
+  if (loading) return <div>로딩중...</div>;
 
   return (
     <div style={{ height: 950, width: "100%", backgroundColor: "white" }}>
