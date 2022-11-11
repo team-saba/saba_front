@@ -56,4 +56,9 @@ function isRunning(status) {
   }
 }
 
-export { VerifiedUserIcon, check, isRunning };
+function checkNull(value) {
+  if (typeof value == "undefined" || value == null || value == "") return true;
+  else false;
+}
+
+export { VerifiedUserIcon, check, isRunning, checkNull };

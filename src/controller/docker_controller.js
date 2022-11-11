@@ -1,4 +1,5 @@
 import { DockerService } from "../service/docker_service";
+import { checkNull } from "../component/element";
 
 export class DockerServiceController {
   static container() {
@@ -49,6 +50,12 @@ export class DockerServiceController {
     return resJson;
   }
   static rename(container_id, new_name) {
+    if (checkNull(new_name) || checkNull(container_id)) {
+      alert(
+        "컨테이너가 선택되었는지/변경할 이름이 입력되었는 지 확인해주세요."
+      );
+      return;
+    }
     const resJson = DockerService.rename(container_id, new_name);
     return resJson;
   }
