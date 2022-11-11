@@ -13,6 +13,10 @@ export default function iamgeTable() {
   let [images, setImages] = useState([]);
   const [open, setOpen] = React.useState(false);
 
+  function handleOpen() {
+    setOpen(!open);
+  }
+
   const columns = [
     { field: "Name", headerName: "Name", width: 250 },
     {
@@ -104,7 +108,7 @@ export default function iamgeTable() {
               size="small"
               color="error"
               variant="contained"
-              onClick={() => setOpen(true)}
+              onClick={() => handleOpen()}
             >
               image Signing
             </Button>
@@ -147,12 +151,7 @@ export default function iamgeTable() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <SigningModal
-        open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-      ></SigningModal>
+      <SigningModal open={open} handleOpen={handleOpen}></SigningModal>
     </div>
   );
 }
