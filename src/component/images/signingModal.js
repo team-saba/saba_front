@@ -15,11 +15,12 @@ const style = {
   p: 4,
 };
 
-export default function SigningModal(isOpen) {
-  const [open, setOpen] = React.useState(isOpen);
+export default function SigningModal({ open }) {
+  const [isOpen, setOpen] = React.useState(false);
+
   React.useEffect(() => {
-    setOpen(isOpen);
-  }, [isOpen]);
+    setOpen(open);
+  }, [open]);
   const handleClose = () => {
     setOpen(false);
   };
@@ -27,7 +28,7 @@ export default function SigningModal(isOpen) {
   return (
     <div>
       <Modal
-        open={open}
+        open={isOpen}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
