@@ -7,6 +7,7 @@ import { IconButton } from "@mui/material";
 import { VerifiedUserIcon } from "../element";
 import { useEffect, useState } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
+import { SigningServiceController } from "../../controller/signing_controller";
 import SigningModal from "./signingModal";
 
 export default function iamgeTable() {
@@ -78,11 +79,11 @@ export default function iamgeTable() {
       },
     },
     {
-      field: "isSigned",
-      headerName: "isSigned",
+      field: "signed",
+      headerName: "signed",
       width: 100,
       renderCell: (params) => {
-        if (params.formattedValue == "true") {
+        if (params.formattedValue == true) {
           return (
             <IconButton aria-label="verified">
               <VerifiedUserIcon style={{ color: "green" }} />
@@ -108,7 +109,12 @@ export default function iamgeTable() {
               size="small"
               color="error"
               variant="contained"
-              onClick={() => handleOpen()}
+              // onClick={() => handleOpen()}
+              onClick={() => {
+                SigningServiceController.sign(params.row.Name).then((res) => {
+                  console.log(res);
+                });
+              }}
             >
               image Signing
             </Button>

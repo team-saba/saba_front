@@ -6,7 +6,9 @@ import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
+import { VerifiedUserIcon } from "../element";
+import * as React from "react";
 
 export default function remoteTable() {
   let [containers, setContainers] = useState([]);
@@ -150,8 +152,10 @@ export default function remoteTable() {
             return (
               <tr>
                 <td>{container.Name.replace("/", "")}</td>
-                <td colspan="2" style={style}>
-                  verified icon
+                <td colSpan="2" style={style}>
+                  <IconButton aria-label="verified">
+                    <VerifiedUserIcon style={{ color: "green" }} />
+                  </IconButton>
                 </td>
                 {/* <td colspan="3">{container.State.Status}</td> */}
                 <td colspan="3">{container.Status}</td>

@@ -1,4 +1,5 @@
 import { SigningService } from "../service/signing_service";
+import { DockerService } from "../service/docker_service";
 
 export class SigningServiceController {
   static async login(id, pw) {
@@ -35,7 +36,6 @@ export class SigningServiceController {
     try {
       const resJson = await SigningService.keyGen(pw);
       alert(resJson["key_gen_result"] + " 생성됨");
-      return;
     } catch (e) {
       throw e;
     }
@@ -49,6 +49,10 @@ export class SigningServiceController {
     const resJson = await SigningService.keyDel(pw);
     if (resJson["key_del result"]) alert(resJson["key_del result"]);
     else alert(resJson);
-    return;
+  }
+
+  static sign(image_id) {
+    const resJson = SigningService.sign(image_id);
+    return resJson;
   }
 }

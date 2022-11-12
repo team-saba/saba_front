@@ -1,5 +1,6 @@
 /* eslint-disable */
 import instance from "./axiosConfig";
+import { token } from "../config/config";
 
 export class SigningService {
   static login(id, pw) {
@@ -64,6 +65,15 @@ export class SigningService {
           if (!res.data) reject(new Error(500));
           resolve(res.data);
         });
+    });
+  }
+
+  static sign(image_id) {
+    return new Promise((resolve, reject) => {
+      instance.post("/image/signing_image", { image_id }).then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
     });
   }
 }
