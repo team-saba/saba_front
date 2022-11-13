@@ -223,6 +223,20 @@ export default function ContainerTable() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const init = async () => {
+      await VulnerServiceController.scanQueueList().then(({ QueueList }) => {
+        setQueueList(QueueList);
+      });
+      await VulnerServiceController.scanList().then(({ scanList }) => {
+        setScanList(scanList);
+        setLoading(false);
+      });
+    };
+
+    init();
+  }, []);
+
   for (var i = 0; i < QueueList.length; i++) {
     for (var j = 0; j < scanList.length; j++) {
       if (QueueList[i].imageId === scanList[j].Name) {
