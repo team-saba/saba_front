@@ -6,8 +6,11 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import Switch from "@mui/material/Switch";
 
 export default function SettignList() {
+  const CVE_trivy = { inputProps: { "aria-label": "trivy" } };
+  const CVE_clair = { inputProps: { "aria-label": "clair" } };
   return (
     <List
       sx={{
@@ -19,12 +22,12 @@ export default function SettignList() {
       container
       justify="center"
     >
-      <ListItem alignItems="flex-start" sx={{ height: 300, maxHeight: 1000 }}>
+      <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary="Brunch this weekend?"
+          primary="내 설정"
           secondary={
             <React.Fragment>
               <Typography
@@ -32,54 +35,71 @@ export default function SettignList() {
                 component="span"
                 variant="body2"
                 color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
+              ></Typography>
+              {
+                "컨테이너 관리 및 사이닝, CVE 분석 관련 설정을 변경하는 페이지입니다."
+              }
             </React.Fragment>
           }
         />
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        </ListItemAvatar>
+        <ListItemAvatar></ListItemAvatar>
         <ListItemText
-          primary="Summer BBQ"
+          primary="CVE관련 설정"
           secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                to Scott, Alex, Jennifer
-              </Typography>
-              {" — Wish I could come, but I'm out of town this…"}
-            </React.Fragment>
+            <React.Fragment>{"CVE 관련 설정 수정 블록입니다."}</React.Fragment>
           }
         />
       </ListItem>
+      <ListItem alignItems="flex-start" sx={{ height: 300, maxHeight: 1000 }}>
+        <ListItemAvatar></ListItemAvatar>
+        <div>
+          <table>
+            <tr>
+              <td>
+                <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  trivy로 취약점 스캔
+                </Typography>
+              </td>
+              <td>
+                {" "}
+                <Switch label={CVE_trivy} defaultChecked />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Typography
+                  sx={{ display: "inline" }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  clair로 취약점 스캔
+                </Typography>
+              </td>
+              <td>
+                {" "}
+                <Switch label={CVE_clair} defaultChecked />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ListItem>
       <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-        </ListItemAvatar>
+      <ListItem alignItems="flex-start" sx={{ height: 300, maxHeight: 1000 }}>
+        <ListItemAvatar></ListItemAvatar>
         <ListItemText
-          primary="Oui Oui"
+          primary="사이닝 관련 설정"
           secondary={
             <React.Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Sandra Adams
-              </Typography>
-              {" — Do you have Paris recommendations? Have you ever…"}
+              {"사이닝 관련 설정 수정 블록입니다."}
             </React.Fragment>
           }
         />
