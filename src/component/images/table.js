@@ -113,6 +113,7 @@ export default function iamgeTable() {
               onClick={() => {
                 SigningServiceController.sign(params.row.Name).then((res) => {
                   console.log(res);
+                  alert("signing success");
                 });
               }}
             >
@@ -144,6 +145,17 @@ export default function iamgeTable() {
         setImages(images);
       })
       .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      DockerServiceController.image()
+        .then(({ images }) => {
+          setImages(images);
+        })
+        .catch((err) => console.log(err));
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
