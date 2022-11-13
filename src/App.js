@@ -8,8 +8,7 @@ import AppImage from "./component/images/appImage.js";
 import Vulnerability from "./component/vulner/vulner.js";
 import AppCve from "./component/vulner/cve.js";
 import Log from "./component/log/log.js";
-import AppSigning from "./component/security/appSigning.js";
-import appCve from "./component/vulner/cve.js";
+import SettingPage from "./setting/settingPage.js";
 
 function App() {
   return (
@@ -25,7 +24,7 @@ function App() {
         <Route path="/vulner" element={<Vulnerability />}></Route>
         <Route path="/cve" element={<AppCve />}></Route>
         <Route path="/log" element={<Log />}></Route>
-        <Route path="/keymange" element={<AppSigning />}></Route>
+        <Route path="/setting" element={<SettingPage />}></Route>
       </Routes>
 
       <AppFooter />

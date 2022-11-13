@@ -10,15 +10,15 @@ export default function CustomizedTooltips() {
   const [pw, setPw] = React.useState();
 
   return (
-    <Grid container justifyContent="right" alignItems="center" spacing={2}>
+    <Grid container justifyContent="right" alignItems="center" sx={{ mb: 1 }}>
       <Grid item>
-        pw
         <TextField
           size="small"
           id="outlined-basic"
           label="Outlined"
           variant="outlined"
           onChange={(newValue) => setPw(newValue.target.value)}
+          sx={{ mr: 1 }}
         />
         <Tooltip title="generate" placement="right">
           <Button
@@ -32,19 +32,17 @@ export default function CustomizedTooltips() {
           </Button>
         </Tooltip>
       </Grid>
-      <Grid item>
-        <Tooltip title="delete" placement="right-start">
-          <Button
-            variant="contained"
-            color={"secondary"}
-            onClick={() => {
-              SigningServiceController.keyDel(pw);
-            }}
-          >
-            Delete
-          </Button>
-        </Tooltip>
-      </Grid>
+      <Tooltip title="delete" sx={{ ml: 1, mr: 1 }}>
+        <Button
+          variant="contained"
+          color={"secondary"}
+          onClick={() => {
+            SigningServiceController.keyDel(pw);
+          }}
+        >
+          Delete
+        </Button>
+      </Tooltip>
     </Grid>
   );
 }
