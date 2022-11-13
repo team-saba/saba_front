@@ -267,7 +267,7 @@ export default function Table() {
                   </td>
                   <td colspan="3">{container.Status}</td>
                   <td colspan="2">quickAction</td>
-                  <td colspan="2">stack</td>
+                  <td colspan="2">{container.Stack.replace("/", "")}</td>
                   <td colspan="2">{container.Image}</td>
                   <td colspan="2">{container["Created Time"]}</td>
                   <td colspan="2">{container.IPAddress}</td>

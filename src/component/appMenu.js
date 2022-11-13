@@ -97,13 +97,6 @@ export default function AppMenu() {
                   </li>
                 </ul>
               </li>
-
-              <li className="nav-item">
-                <a href="/keymange" className="nav-link">
-                  <i className="fa-solid fa-key"></i>
-                  <p> keySinging</p>
-                </a>
-              </li>
               <li className="nav-item">
                 <a href="/setting" className="nav-link">
                   <i className="fa-solid fa-gear"></i>
