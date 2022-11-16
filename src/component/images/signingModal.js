@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import InputElement from "../CustomInput";
 import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
+import { SigningServiceController } from "../../controller/signing_controller";
+import { signingData } from "../element";
 
 const style = {
   position: "absolute",
@@ -20,7 +22,7 @@ const style = {
 };
 
 export default function SigningModal(props) {
-  const { handleOpen, open } = props;
+  let { handleOpen, open, result } = props;
   const [isOpen, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -56,23 +58,11 @@ export default function SigningModal(props) {
             }}
           >
             <Typography id="modal-modal-description" sx={{ m: 2 }}>
-              <h5>레포지터리 이름</h5>
-              <InputElement></InputElement>
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ m: 2 }}>
-              <h5>태그</h5>
-              <InputElement></InputElement>
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ m: 2 }}>
-              <h5>키</h5>
-              <InputElement></InputElement>
+              <h5>{result}</h5>
+              {/* <signingData result={result}></signingData> */}
             </Typography>
           </Box>
-          <Box sx={{ display: "inline", botton: "10%" }}>
-            <Button size="medium" color="primary" variant="contained">
-              사이닝
-            </Button>
-          </Box>
+          <Box sx={{ display: "inline", botton: "10%" }}></Box>
         </Grid>
       </Modal>
     </div>

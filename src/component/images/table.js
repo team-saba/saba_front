@@ -14,6 +14,7 @@ import CustomizedTooltips from "../security/containerTooltip";
 export default function iamgeTable() {
   let [images, setImages] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [signingResult, setResult] = React.useState();
 
   function handleOpen() {
     setOpen(!open);
@@ -110,12 +111,14 @@ export default function iamgeTable() {
               size="small"
               color="error"
               variant="contained"
-              // onClick={() => handleOpen()}
-              onClick={() => {
-                SigningServiceController.sign(params.row.Name).then((res) => {
-                  console.log(res);
-                  alert("signing success");
-                });
+              onClick={async () => {
+                await SigningServiceController.sign(params.row.Name);
+                await SigningServiceController.verify(params.row.Name).then(
+                  async (res) => {
+                    await setResult(res);
+                    await handleOpen();
+                  }
+                );
               }}
             >
               image Signing
@@ -177,7 +180,11 @@ export default function iamgeTable() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <SigningModal open={open} handleOpen={handleOpen}></SigningModal>
+      <SigningModal
+        open={open}
+        handleOpen={handleOpen}
+        result={signingResult}
+      ></SigningModal>
     </div>
   );
 }

@@ -55,4 +55,14 @@ export class SigningServiceController {
     const resJson = SigningService.sign(image_id);
     return resJson;
   }
+
+  static verify(image_id) {
+    const resJson = SigningService.verify(image_id);
+    return resJson;
+  }
+
+  static parsingResult(result) {
+    const resJson = JSON.parse(result)[0];
+    return resJson;
+  }
 }
