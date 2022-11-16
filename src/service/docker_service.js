@@ -126,4 +126,13 @@ export class DockerService {
       });
     });
   }
+
+  static scan(image_id) {
+    return new Promise((resolve, reject) => {
+      instance.post("/image/scan" + token, { image_id }).then((res) => {
+        if (!res.data) reject(new Error(500));
+        resolve(res.data);
+      });
+    });
+  }
 }

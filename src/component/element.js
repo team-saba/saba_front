@@ -61,4 +61,13 @@ function checkNull(value) {
   else false;
 }
 
-export { VerifiedUserIcon, check, isRunning, checkNull };
+function signingData(props) {
+  const result = props.result;
+  if (result) {
+    return <h5>{result}</h5>;
+  } else {
+    return <></>;
+  }
+}
+
+export { VerifiedUserIcon, check, isRunning, checkNull, signingData };

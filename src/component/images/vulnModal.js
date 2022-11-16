@@ -2,8 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import InputElement from "../CustomInput";
-import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
 
 const style = {
@@ -19,7 +17,7 @@ const style = {
   p: 4,
 };
 
-export default function SigningModal(props) {
+export default function VulnModal(props) {
   let { handleOpen, open, result } = props;
   const [isOpen, setOpen] = React.useState(false);
 
@@ -43,7 +41,7 @@ export default function SigningModal(props) {
           <Box>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               <h3>
-                <strong>signing</strong>
+                <strong>vuln</strong>
               </h3>
             </Typography>
           </Box>
@@ -57,7 +55,6 @@ export default function SigningModal(props) {
           >
             <Typography id="modal-modal-description" sx={{ m: 2 }}>
               <h5>{result}</h5>
-              {/* <signingData result={result}></signingData> */}
             </Typography>
           </Box>
           <Box sx={{ display: "inline", botton: "10%" }}></Box>

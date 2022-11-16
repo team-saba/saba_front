@@ -71,6 +71,14 @@ export class SigningService {
   static sign(image_id) {
     return new Promise((resolve, reject) => {
       instance.post("/image/signing_image", { image_id }).then((res) => {
+        resolve();
+      });
+    });
+  }
+
+  static verify(image_id) {
+    return new Promise((resolve, reject) => {
+      instance.post("/image/verify_image", { image_id }).then((res) => {
         if (!res.data) reject(new Error(500));
         resolve(res.data);
       });

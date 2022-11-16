@@ -9,14 +9,22 @@ import { useEffect, useState } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
 import { SigningServiceController } from "../../controller/signing_controller";
 import SigningModal from "./signingModal";
+import VulnModal from "./vulnModal";
 import CustomizedTooltips from "../security/containerTooltip";
 
 export default function iamgeTable() {
   let [images, setImages] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [vulnOpen, setVulnOpen] = React.useState(false);
+  const [signingResult, setResult] = React.useState();
+  const [vulnResult, setVuln] = React.useState();
 
   function handleOpen() {
     setOpen(!open);
+  }
+
+  function handleVulnOpen() {
+    setVulnOpen(!vulnOpen);
   }
 
   const columns = [
@@ -86,13 +94,24 @@ export default function iamgeTable() {
       renderCell: (params) => {
         if (params.formattedValue == true) {
           return (
-            <IconButton aria-label="verified">
+            <IconButton aria-label="verified" disabled={true}>
               <VerifiedUserIcon style={{ color: "green" }} />
             </IconButton>
           );
         } else {
           return (
-            <IconButton aria-label="verified">
+            <IconButton
+              aria-label="verified"
+              onClick={async () => {
+                await SigningServiceController.sign(params.row.Name);
+                await SigningServiceController.verify(params.row.Name).then(
+                  async (res) => {
+                    await setResult(res);
+                    await handleOpen();
+                  }
+                );
+              }}
+            >
               <VerifiedUserIcon style={{ color: "red" }} />
             </IconButton>
           );
@@ -108,28 +127,15 @@ export default function iamgeTable() {
           <Stack direction="column" spacing={1}>
             <Button
               size="small"
-              color="error"
-              variant="contained"
-              // onClick={() => handleOpen()}
-              onClick={() => {
-                SigningServiceController.sign(params.row.Name).then((res) => {
-                  console.log(res);
-                  alert("signing success");
-                });
-              }}
-            >
-              image Signing
-            </Button>
-            <Button
-              size="small"
               color="warning"
-              variant="contained"
+              variant="outlined"
               onClick={() => {
-                //modal open
-                DockerServiceController.scan(params.row.Name).then((res) => {
-                  console.log(res);
-                  //  res data 모달로 만들기
-                });
+                DockerServiceController.scan(params.row.Name).then(
+                  async (res) => {
+                    // await setVuln(res.scan_result[0]);
+                    await handleVulnOpen();
+                  }
+                );
               }}
             >
               check vulnerability
@@ -177,7 +183,16 @@ export default function iamgeTable() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <SigningModal open={open} handleOpen={handleOpen}></SigningModal>
+      <SigningModal
+        open={open}
+        handleOpen={handleOpen}
+        result={signingResult}
+      ></SigningModal>
+      <VulnModal
+        open={vulnOpen}
+        handleOpen={handleVulnOpen}
+        result={vulnResult}
+      ></VulnModal>
     </div>
   );
 }
