@@ -2,22 +2,15 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import { IconButton } from "@mui/material";
-import { VerifiedUserIcon } from "../element";
 import { useEffect, useState } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
-import CustomizedTooltips from "../security/containerTooltip";
 import Tooltips from "./tooltip";
 
 export default function Table() {
   const params = new URLSearchParams(window.location.search);
-  const imageId = params.get("remote");
-
+  const [selectionModel, setSelectionModel] = React.useState();
   let [containers, setContainers] = useState([]);
-  let [container_id, setContainerId] = useState();
-  let [new_name, setNewName] = useState();
-  const style = { color: "green" };
+  const imageId = params.get("remote");
 
   function getContainer() {
     DockerServiceController.container()
@@ -35,13 +28,43 @@ export default function Table() {
     }, []);
 
     const columns = [
-      { field: "Name", headerName: "name", width: 250 },
-      { field: "Status", headerName: "state", width: 250 },
+      {
+        field: "Name",
+        headerName: "name",
+        width: 250,
+        renderCell: (params) => {
+          return <div>{params.formattedValue.replace("/", "")}</div>;
+        },
+      },
+      {
+        field: "Status",
+        headerName: "state",
+        width: 250,
+        renderCell: (params) => {
+          if (params.formattedValue === "running") {
+            return (
+              <Button size="small" variant="contained" color="primary">
+                running
+              </Button>
+            );
+          } else {
+            return (
+              <Button size="small" variant="contained" color="warning">
+                {params.formattedValue}
+              </Button>
+            );
+          }
+        },
+      },
+
       { field: "Stack", headerName: "stack", width: 250 },
       {
         field: "CONTAINER_ID",
         headerName: "image",
         width: 250,
+        renderCell: (params) => {
+          return <div>{params.formattedValue.slice(0, 12)}</div>;
+        },
       },
       {
         field: "Created Time",
@@ -52,7 +75,14 @@ export default function Table() {
         },
       },
       { field: "IPAddress", headerName: "IP Address", width: 250 },
-      { field: "Port", headerName: "Published Ports Ownership", width: 250 },
+      {
+        field: "Port",
+        headerName: "Published Ports Ownership",
+        width: 250,
+        renderCell: (params) => {
+          return <div>{Object.keys(params.formattedValue)}</div>;
+        },
+      },
     ];
 
     return (
@@ -63,7 +93,10 @@ export default function Table() {
           backgroundColor: "white",
         }}
       >
-        <Tooltips></Tooltips>
+        <Tooltips
+          container_id={selectionModel}
+          getContainer={getContainer}
+        ></Tooltips>
         <DataGrid
           rowHeight={80}
           rows={containers}
@@ -72,7 +105,11 @@ export default function Table() {
           getRowId={(row) => row.CONTAINER_ID}
           rowsPerPageOptions={[10]}
           checkboxSelection
-          disableSelectionOnClick
+          onSelectionModelChange={(newSelectionModel) => {
+            const temp = newSelectionModel.pop();
+            setSelectionModel(temp);
+          }}
+          selectionModel={selectionModel}
         />
       </div>
     );
