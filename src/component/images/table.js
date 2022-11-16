@@ -9,15 +9,22 @@ import { useEffect, useState } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
 import { SigningServiceController } from "../../controller/signing_controller";
 import SigningModal from "./signingModal";
+import VulnModal from "./vulnModal";
 import CustomizedTooltips from "../security/containerTooltip";
 
 export default function iamgeTable() {
   let [images, setImages] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [vulnOpen, setVulnOpen] = React.useState(false);
   const [signingResult, setResult] = React.useState();
+  const [vulnResult, setVuln] = React.useState();
 
   function handleOpen() {
     setOpen(!open);
+  }
+
+  function handleVulnOpen() {
+    setVulnOpen(!vulnOpen);
   }
 
   const columns = [
@@ -128,11 +135,12 @@ export default function iamgeTable() {
               color="warning"
               variant="contained"
               onClick={() => {
-                //modal open
-                DockerServiceController.scan(params.row.Name).then((res) => {
-                  console.log(res);
-                  //  res data 모달로 만들기
-                });
+                DockerServiceController.scan(params.row.Name).then(
+                  async (res) => {
+                    // await setVuln(res.scan_result[0]);
+                    await handleVulnOpen();
+                  }
+                );
               }}
             >
               check vulnerability
@@ -185,6 +193,11 @@ export default function iamgeTable() {
         handleOpen={handleOpen}
         result={signingResult}
       ></SigningModal>
+      <VulnModal
+        open={vulnOpen}
+        handleOpen={handleVulnOpen}
+        result={vulnResult}
+      ></VulnModal>
     </div>
   );
 }
