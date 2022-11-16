@@ -1,13 +1,11 @@
 /* eslint-disable */
 import * as React from "react";
 import Tooltip from "@mui/material/Tooltip";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import { SigningServiceController } from "../../controller/signing_controller";
+import { DockerServiceController } from "../../controller/docker_controller";
 
-export default function Tooltips() {
-  const [pw, setPw] = React.useState();
+export default function Tooltips(props) {
+  const { container_id, getContainer } = props;
 
   return (
     <Grid container justifyContent="right" alignItems="center" sx={{ mb: 1 }}>
