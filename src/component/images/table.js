@@ -94,13 +94,24 @@ export default function iamgeTable() {
       renderCell: (params) => {
         if (params.formattedValue == true) {
           return (
-            <IconButton aria-label="verified">
+            <IconButton aria-label="verified" disabled={true}>
               <VerifiedUserIcon style={{ color: "green" }} />
             </IconButton>
           );
         } else {
           return (
-            <IconButton aria-label="verified">
+            <IconButton
+              aria-label="verified"
+              onClick={async () => {
+                await SigningServiceController.sign(params.row.Name);
+                await SigningServiceController.verify(params.row.Name).then(
+                  async (res) => {
+                    await setResult(res);
+                    await handleOpen();
+                  }
+                );
+              }}
+            >
               <VerifiedUserIcon style={{ color: "red" }} />
             </IconButton>
           );
@@ -116,24 +127,8 @@ export default function iamgeTable() {
           <Stack direction="column" spacing={1}>
             <Button
               size="small"
-              color="error"
-              variant="contained"
-              onClick={async () => {
-                await SigningServiceController.sign(params.row.Name);
-                await SigningServiceController.verify(params.row.Name).then(
-                  async (res) => {
-                    await setResult(res);
-                    await handleOpen();
-                  }
-                );
-              }}
-            >
-              image Signing
-            </Button>
-            <Button
-              size="small"
               color="warning"
-              variant="contained"
+              variant="outlined"
               onClick={() => {
                 DockerServiceController.scan(params.row.Name).then(
                   async (res) => {
