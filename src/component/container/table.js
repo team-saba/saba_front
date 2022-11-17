@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
 import Tooltips from "./tooltip";
+import remoteTable from "./remoteTable";
 
 export default function Table() {
   const params = new URLSearchParams(window.location.search);
