@@ -89,7 +89,7 @@ export default function Table() {
     return (
       <div
         style={{
-          height: 800,
+          height: 650,
           width: "100%",
           backgroundColor: "white",
         }}
@@ -99,7 +99,7 @@ export default function Table() {
           getContainer={getContainer}
         ></Tooltips>
         <DataGrid
-          rowHeight={80}
+          rowHeight={60}
           rows={containers}
           columns={columns}
           pageSize={10}
