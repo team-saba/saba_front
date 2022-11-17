@@ -1,7 +1,9 @@
 import * as React from "react";
 import { ResponsivePie } from "@nivo/pie";
 
-const PieChart = () => {
+const PieChart = (props) => {
+  const { severity } = props;
+
   const handle = {
     padClick: (data) => {
       console.log(data);
@@ -15,16 +17,12 @@ const PieChart = () => {
   return (
     <div style={{ width: "600px", height: "330px" }}>
       <ResponsivePie
-        data={[
-          { id: "critical", value: 10 },
-          { id: "medium", value: 88 },
-          { id: "low", value: 221 },
-        ]}
+        data={severity}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
         padAngle={1.8}
         cornerRadius={8}
-        colors={["red", "orange", "olive"]}
+        colors={["red", "orange", "green", "blue"]}
         borderWidth={0}
         arcLinkLabelsSkipAngle={0}
         arcLinkLabelsTextColor="#000000"

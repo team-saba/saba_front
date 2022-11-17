@@ -9,6 +9,35 @@ export default function AppCve() {
   const params = new URLSearchParams(window.location.search);
   const imageId = params.get("imageId");
 
+  const data = JSON.parse(localStorage.getItem("test"));
+  const {
+    vulnerability: { scan_result: resultList },
+  } = data;
+
+  let severity = [
+    { id: "LOW", value: 0 },
+    { id: "MEDIUM", value: 0 },
+    { id: "HIGH", value: 0 },
+    { id: "CRITICAL", value: 0 },
+  ];
+
+  for (let index in resultList) {
+    switch (resultList[index].Severity) {
+      case "LOW":
+        severity[0].value++;
+        break;
+      case "MEDIUM":
+        severity[1].value++;
+        break;
+      case "HIGH":
+        severity[2].value++;
+        break;
+      case "CRITICAL":
+        severity[3].value++;
+        break;
+    }
+  }
+
   return (
     <div className="AppSetting">
       <containerHeader></containerHeader>
@@ -31,7 +60,7 @@ export default function AppCve() {
                 <br />
               </div>
             </div>
-            <PieChart></PieChart>
+            <PieChart severity={severity}></PieChart>
             <CveTable></CveTable>
           </div>
         </div>
