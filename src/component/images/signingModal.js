@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import InputElement from "../CustomInput";
 import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
+import { SigningData } from "../element";
 
 const style = {
   position: "absolute",
@@ -55,10 +56,7 @@ export default function SigningModal(props) {
               mx: 0.5,
             }}
           >
-            <Typography id="modal-modal-description" sx={{ m: 2 }}>
-              <h5>{result}</h5>
-              {/* <signingData result={result}></signingData> */}
-            </Typography>
+            <SigningData result={result}></SigningData>
           </Box>
           <Box sx={{ display: "inline", botton: "10%" }}></Box>
         </Grid>

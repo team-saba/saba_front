@@ -40,7 +40,6 @@ function check(verified) {
 }
 
 function isRunning(status) {
-  console.log(status);
   if (status === "RUNNING") {
     return (
       <Button size="small" color="success" variant="contained">
@@ -61,13 +60,76 @@ function checkNull(value) {
   else false;
 }
 
-function signingData(props) {
+function SigningData(props) {
   const result = props.result;
   if (result) {
-    return <h5>{result}</h5>;
+    const resJson = JSON.parse(result)[0];
+    let {
+      critical: { identity, image, type },
+      optional,
+    } = resJson;
+    if (!optional) optional = "None";
+    return (
+      <>
+        <table style={{ width: 100, border: 1 }}>
+          <tr>
+            <td>
+              <strong>identity</strong>
+            </td>
+            <td>{identity["docker-reference"]}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>image</strong>
+            </td>
+            <td>{image["docker-manifest-digest"].slice(0, 30)}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>type</strong>
+            </td>
+            <td>{type}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>optional</strong>
+            </td>
+            <td>{optional}</td>
+          </tr>
+        </table>
+      </>
+    );
   } else {
     return <></>;
   }
 }
 
-export { VerifiedUserIcon, check, isRunning, checkNull, signingData };
+function VulnData(props) {
+  const result = props.result;
+  if (result) {
+    const resJson = result.scan_result[0];
+    const { VulnerabilityID, Description } = resJson;
+    return (
+      <>
+        <table>
+          <tr>
+            <td>
+              <strong>VulnerabilityID</strong>
+            </td>
+            <td>{VulnerabilityID}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Description</strong>
+            </td>
+            <td>{Description}</td>
+          </tr>
+        </table>
+      </>
+    );
+  } else {
+    return <></>;
+  }
+}
+
+export { VerifiedUserIcon, check, isRunning, checkNull, SigningData, VulnData };
