@@ -40,7 +40,6 @@ function check(verified) {
 }
 
 function isRunning(status) {
-  console.log(status);
   if (status === "RUNNING") {
     return (
       <Button size="small" color="success" variant="contained">
@@ -60,20 +59,6 @@ function checkNull(value) {
   if (typeof value == "undefined" || value == null || value == "") return true;
   else false;
 }
-
-// [
-//   {
-//     critical: {
-//       identity: { "docker-reference": "regi.seungwook.me/sha256" },
-//       image: {
-//         "docker-manifest-digest":
-//           "sha256:5ca850e6b7d0e124c4d87e2e75c351f158b3ac4fc314350939aab837ad5ecd58",
-//       },
-//       type: "cosign container image signature",
-//     },
-//     optional: null,
-//   },
-// ];
 
 function SigningData(props) {
   const result = props.result;
@@ -119,4 +104,32 @@ function SigningData(props) {
   }
 }
 
-export { VerifiedUserIcon, check, isRunning, checkNull, SigningData };
+function VulnData(props) {
+  const result = props.result;
+  if (result) {
+    const resJson = result.scan_result[0];
+    const { VulnerabilityID, Description } = resJson;
+    return (
+      <>
+        <table>
+          <tr>
+            <td>
+              <strong>VulnerabilityID</strong>
+            </td>
+            <td>{VulnerabilityID}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Description</strong>
+            </td>
+            <td>{Description}</td>
+          </tr>
+        </table>
+      </>
+    );
+  } else {
+    return <></>;
+  }
+}
+
+export { VerifiedUserIcon, check, isRunning, checkNull, SigningData, VulnData };

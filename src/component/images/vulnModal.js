@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Grid } from "@mui/material";
+import { VulnData } from "../element";
 
 const style = {
   position: "absolute",
@@ -54,7 +55,8 @@ export default function VulnModal(props) {
             }}
           >
             <Typography id="modal-modal-description" sx={{ m: 2 }}>
-              <h5>{result}</h5>
+              {/* <h5>{result}</h5> */}
+              <VulnData result={result}></VulnData>
             </Typography>
           </Box>
           <Box sx={{ display: "inline", botton: "10%" }}></Box>

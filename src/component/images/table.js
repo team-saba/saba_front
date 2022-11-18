@@ -144,7 +144,7 @@ export default function iamgeTable() {
               onClick={() => {
                 DockerServiceController.scan(params.row.Name).then(
                   async (res) => {
-                    // await setVuln(res.scan_result[0]);
+                    await setVuln(res);
                     await handleVulnOpen();
                   }
                 );
