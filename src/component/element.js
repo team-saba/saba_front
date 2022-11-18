@@ -61,13 +61,62 @@ function checkNull(value) {
   else false;
 }
 
-function signingData(props) {
+// [
+//   {
+//     critical: {
+//       identity: { "docker-reference": "regi.seungwook.me/sha256" },
+//       image: {
+//         "docker-manifest-digest":
+//           "sha256:5ca850e6b7d0e124c4d87e2e75c351f158b3ac4fc314350939aab837ad5ecd58",
+//       },
+//       type: "cosign container image signature",
+//     },
+//     optional: null,
+//   },
+// ];
+
+function SigningData(props) {
   const result = props.result;
   if (result) {
-    return <h5>{result}</h5>;
+    const resJson = JSON.parse(result)[0];
+    let {
+      critical: { identity, image, type },
+      optional,
+    } = resJson;
+    if (!optional) optional = "None";
+    return (
+      <>
+        <table style={{ width: 100, border: 1 }}>
+          <tr>
+            <td>
+              <strong>identity</strong>
+            </td>
+            <td>{identity["docker-reference"]}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>image</strong>
+            </td>
+            <td>{image["docker-manifest-digest"].slice(0, 30)}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>type</strong>
+            </td>
+            <td>{type}</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>optional</strong>
+            </td>
+            <td>{optional}</td>
+          </tr>
+        </table>
+      </>
+    );
   } else {
     return <></>;
   }
 }
 
-export { VerifiedUserIcon, check, isRunning, checkNull, signingData };
+export { VerifiedUserIcon, check, isRunning, checkNull, SigningData };

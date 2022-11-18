@@ -94,7 +94,19 @@ export default function iamgeTable() {
       renderCell: (params) => {
         if (params.formattedValue == true) {
           return (
-            <IconButton aria-label="verified" disabled={true}>
+            <IconButton
+              aria-label="verified"
+              disabled={false}
+              onClick={async () => {
+                await SigningServiceController.sign(params.row.Name);
+                await SigningServiceController.verify(params.row.Name).then(
+                  async (res) => {
+                    await setResult(res);
+                    await handleOpen();
+                  }
+                );
+              }}
+            >
               <VerifiedUserIcon style={{ color: "green" }} />
             </IconButton>
           );
