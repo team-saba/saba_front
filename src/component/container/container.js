@@ -2,13 +2,13 @@ import Table from "./table";
 import { useEffect } from "react";
 
 export default function Container() {
-  // trivy , calir 초기 local storge 세팅
+  // trivy ,  초기 local storge 세팅
   useEffect(() => {
     if (!localStorage.getItem("trivy")) {
       localStorage.setItem("trivy", JSON.stringify("true"));
     }
-    if (!localStorage.getItem("calir")) {
-      localStorage.setItem("calir", JSON.stringify("false"));
+    if (!localStorage.getItem("clair")) {
+      localStorage.setItem("clair", JSON.stringify("false"));
     }
   }, []);
 
