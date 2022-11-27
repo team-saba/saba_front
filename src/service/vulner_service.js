@@ -12,13 +12,13 @@ export class VulnerService {
     });
   }
 
-  static scanImage(imageId) {
+  static scanImage(imageId, trivy, clair) {
     return new Promise((resolve, reject) => {
       instance
         .post("/scan/start_reservation_process" + token, {
           imageId: imageId,
-          clair: false,
-          trivy: true,
+          clair: clair,
+          trivy: trivy,
         })
         .then((res) => {
           resolve(res.data);

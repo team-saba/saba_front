@@ -13,6 +13,13 @@ export default function ContainerTable() {
 
   const [loading, setLoading] = useState(true);
 
+  const [trivy, setTrivy] = React.useState(
+    localStorage.getItem("trivy") === "true" ? true : false
+  );
+  const [clair, setClair] = React.useState(
+    localStorage.getItem("clair") === "true" ? true : false
+  );
+
   const columns = [
     {
       field: "Name",
@@ -122,11 +129,19 @@ export default function ContainerTable() {
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  VulnerServiceController.scanImage(params.row.Name);
-                  const btnElement = document.getElementById(params.row.Name);
-                  // 버튼 scan 에서 실행중으로 변경
-                  btnElement.innerText = "Scanning";
-                  btnElement.color = "success";
+                  if (trivy === false && clair === false) {
+                    alert("Please select a scanner > setting");
+                  } else {
+                    VulnerServiceController.scanImage(
+                      params.row.Name,
+                      trivy,
+                      clair
+                    );
+                    const btnElement = document.getElementById(params.row.Name);
+                    // 버튼 scan 에서 실행중으로 변경
+                    btnElement.innerText = "Scanning";
+                    btnElement.color = "success";
+                  }
                 }}
               >
                 scan
