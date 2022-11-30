@@ -5,8 +5,8 @@ export class VulnerServiceController {
     return VulnerService.scanList();
   }
 
-  static scanImage(imageName) {
-    return VulnerService.scanImage(imageName);
+  static scanImage(imageName, trivy, clair) {
+    return VulnerService.scanImage(imageName, trivy, clair);
   }
 
   static scanResult(imageName) {

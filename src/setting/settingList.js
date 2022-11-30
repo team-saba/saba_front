@@ -7,17 +7,41 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
+import { useEffect } from "react";
 
 export default function SettignList() {
   const CVE_trivy = { inputProps: { "aria-label": "trivy" } };
   const CVE_clair = { inputProps: { "aria-label": "clair" } };
+
+  // local storage trivy, clair 값 가져오기
+  const [trivy, setTrivy] = React.useState(
+    localStorage.getItem("trivy") === "true" ? true : false
+  );
+  const [clair, setClair] = React.useState(
+    localStorage.getItem("clair") === "true" ? true : false
+  );
+
+  // local storage trivy, clair 값 저장하기
+  useEffect(() => {
+    localStorage.setItem("trivy", trivy);
+    localStorage.setItem("clair", clair);
+  }, [trivy, clair]);
+
+  // swich lavel CVE_trivy, CVE_clair 값 변경
+  const handleChangeTrivy = (event) => {
+    setTrivy(event.target.checked);
+  };
+  const handleChangeClair = (event) => {
+    setClair(event.target.checked);
+  };
+
   return (
     <List
       sx={{
         width: "100%",
         maxWidth: 1000,
         bgcolor: "background.paper",
-        ml: 50,
+        ml: 10,
       }}
       container
       justify="center"
@@ -70,7 +94,12 @@ export default function SettignList() {
               </td>
               <td>
                 {" "}
-                <Switch label={CVE_trivy} defaultChecked />
+                <Switch
+                  {...CVE_trivy}
+                  checked={trivy}
+                  onChange={handleChangeTrivy}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
               </td>
             </tr>
             <tr>
@@ -86,7 +115,12 @@ export default function SettignList() {
               </td>
               <td>
                 {" "}
-                <Switch label={CVE_clair} defaultChecked />
+                <Switch
+                  {...CVE_clair}
+                  checked={clair}
+                  onChange={handleChangeClair}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
               </td>
             </tr>
           </table>

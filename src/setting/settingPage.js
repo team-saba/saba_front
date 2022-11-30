@@ -23,12 +23,11 @@ export default function SettingPage() {
                     </ol>
                   </div>
                 </div>
-                <br />
-                <Grid>
-                  <SettignList></SettignList>
-                </Grid>
               </div>
             </div>
+            <Grid>
+              <SettignList></SettignList>
+            </Grid>
           </div>
         </div>
 

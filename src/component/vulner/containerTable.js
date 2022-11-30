@@ -13,6 +13,13 @@ export default function ContainerTable() {
 
   const [loading, setLoading] = useState(true);
 
+  const [trivy, setTrivy] = React.useState(
+    localStorage.getItem("trivy") === "true" ? true : false
+  );
+  const [clair, setClair] = React.useState(
+    localStorage.getItem("clair") === "true" ? true : false
+  );
+
   const columns = [
     {
       field: "Name",
@@ -122,11 +129,19 @@ export default function ContainerTable() {
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  VulnerServiceController.scanImage(params.row.Name);
-                  const btnElement = document.getElementById(params.row.Name);
-                  // 버튼 scan 에서 실행중으로 변경
-                  btnElement.innerText = "Scanning";
-                  btnElement.color = "success";
+                  if (trivy === false && clair === false) {
+                    alert("Please select a scanner > setting");
+                  } else {
+                    VulnerServiceController.scanImage(
+                      params.row.Name,
+                      trivy,
+                      clair
+                    );
+                    const btnElement = document.getElementById(params.row.Name);
+                    // 버튼 scan 에서 실행중으로 변경
+                    btnElement.innerText = "Scanning";
+                    btnElement.color = "success";
+                  }
                 }}
               >
                 scan
@@ -154,22 +169,22 @@ export default function ContainerTable() {
       renderCell: (params) => {
         if (params.row.vulnerability != null) {
           //vulnerability scan_result[i] Severity count
-          var scan_result = params.row.vulnerability["scan_result"];
+          var scan_result = params.row.vulnerability;
           var Critical = 0;
           var High = 0;
           var Medium = 0;
           var Low = 0;
           var Unknown = 0;
           for (var i = 0; i < scan_result.length; i++) {
-            if (scan_result[i].Severity === "CRITICAL") {
+            if (scan_result[i].severity === "CRITICAL") {
               Critical++;
-            } else if (scan_result[i].Severity === "HIGH") {
+            } else if (scan_result[i].severity === "HIGH") {
               High++;
-            } else if (scan_result[i].Severity === "MEDIUM") {
+            } else if (scan_result[i].severity === "MEDIUM") {
               Medium++;
-            } else if (scan_result[i].Severity == "LOW") {
+            } else if (scan_result[i].severity === "LOW") {
               Low++;
-            } else if (scan_result[i].Severity == "UNKNOWN") {
+            } else if (scan_result[i].severity === "UNKNOWN") {
               Unknown++;
             }
           }
