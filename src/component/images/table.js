@@ -10,7 +10,6 @@ import { DockerServiceController } from "../../controller/docker_controller";
 import { SigningServiceController } from "../../controller/signing_controller";
 import SigningModal from "./signingModal";
 import VulnModal from "./vulnModal";
-import CustomizedTooltips from "../security/containerTooltip";
 
 export default function iamgeTable() {
   let [images, setImages] = useState([]);
@@ -185,7 +184,6 @@ export default function iamgeTable() {
         backgroundColor: "white",
       }}
     >
-      <CustomizedTooltips></CustomizedTooltips>
       <DataGrid
         rowHeight={80}
         rows={images}

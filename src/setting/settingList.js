@@ -8,8 +8,13 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
 import { useEffect } from "react";
+import { SigningServiceController } from "../controller/signing_controller";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 export default function SettignList() {
+  const [pw, setPw] = React.useState();
+
   const CVE_trivy = { inputProps: { "aria-label": "trivy" } };
   const CVE_clair = { inputProps: { "aria-label": "clair" } };
 
@@ -77,7 +82,7 @@ export default function SettignList() {
           }
         />
       </ListItem>
-      <ListItem alignItems="flex-start" sx={{ height: 300, maxHeight: 1000 }}>
+      <ListItem alignItems="flex-start" sx={{ height: 100, maxHeight: 300 }}>
         <ListItemAvatar></ListItemAvatar>
         <div>
           <table>
@@ -127,16 +132,59 @@ export default function SettignList() {
         </div>
       </ListItem>
       <Divider variant="inset" component="li" />
-      <ListItem alignItems="flex-start" sx={{ height: 300, maxHeight: 1000 }}>
+
+      <Divider variant="inset" component="li" />
+      <ListItem alignItems="flex-start">
         <ListItemAvatar></ListItemAvatar>
         <ListItemText
-          primary="사이닝 관련 설정"
+          primary="사이닝 키 관련 설정 블록"
           secondary={
             <React.Fragment>
-              {"사이닝 관련 설정 수정 블록입니다."}
+              {"사이닝 키 관련 설정 수정 블록입니다."}
             </React.Fragment>
           }
         />
+      </ListItem>
+      <ListItem alignItems="flex-start" sx={{ height: 100, maxHeight: 300 }}>
+        <ListItemAvatar></ListItemAvatar>
+        <div>
+          <table>
+            <tr>
+              <td>
+                <TextField
+                  size="small"
+                  id="outlined-basic"
+                  label="키 생성/삭제 비밀번호를 입력해주세요."
+                  variant="outlined"
+                  onChange={(newValue) => setPw(newValue.target.value)}
+                  sx={{ mr: 1, width: 300 }}
+                />
+              </td>
+              <td>
+                <Button
+                  variant="contained"
+                  id={"keymodal"}
+                  onClick={() => {
+                    SigningServiceController.keyGen(pw);
+                  }}
+                >
+                  Generate
+                </Button>{" "}
+              </td>
+              <td>
+                <Button
+                  variant="contained"
+                  color={"error"}
+                  onClick={() => {
+                    SigningServiceController.keyDel(pw);
+                  }}
+                >
+                  Delete
+                </Button>
+              </td>
+            </tr>
+          </table>
+        </div>
       </ListItem>
     </List>
   );
