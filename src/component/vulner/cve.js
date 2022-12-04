@@ -10,9 +10,9 @@ export default function AppCve() {
   const imageId = params.get("imageId");
 
   const data = JSON.parse(localStorage.getItem("test"));
-  const {
-    vulnerability: { scan_result: resultList },
-  } = data;
+  const resultList = data.vulnerability;
+
+  console.log(resultList);
 
   let severity = [
     { id: "LOW", value: 0 },
@@ -21,8 +21,10 @@ export default function AppCve() {
     { id: "CRITICAL", value: 0 },
   ];
 
+  console.log(resultList);
+
   for (let index in resultList) {
-    switch (resultList[index].Severity) {
+    switch (resultList[index].severity) {
       case "LOW":
         severity[0].value++;
         break;
