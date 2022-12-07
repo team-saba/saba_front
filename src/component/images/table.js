@@ -178,7 +178,7 @@ export default function IamgeTable() {
   return (
     <div
       style={{
-        height: 715,
+        height: 730,
         width: "100%",
         backgroundColor: "white",
       }}

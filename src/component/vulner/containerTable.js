@@ -269,7 +269,7 @@ export default function ContainerTable() {
   if (loading) return <div>로딩중...</div>;
 
   return (
-    <div style={{ height: 715, width: "100%", backgroundColor: "white" }}>
+    <div style={{ height: 730, width: "100%", backgroundColor: "white" }}>
       <DataGrid
         rowHeight={60}
         rows={scanList}

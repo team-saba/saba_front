@@ -26,13 +26,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start:container": "docker run --name front -d -p 3000:5000 front",
-    "clear:container": "docker rm -f front",
-    "build:docker": "docker build -t front .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "serve -s build"
   },
   "eslintConfig": {
     "extends": [
