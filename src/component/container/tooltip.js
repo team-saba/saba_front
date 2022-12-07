@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from "react";
 import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
@@ -90,17 +89,6 @@ export default function Tooltips(props) {
               }}
             >
               resume
-            </button>
-            <button
-              style={{ margin: "3px" }}
-              type="button"
-              class="btn btn-primary"
-              onClick={async () => {
-                let result = await DockerServiceController.exec(container_id);
-                if (result) getContainer();
-              }}
-            >
-              exec
             </button>
           </div>
         </Tooltip>

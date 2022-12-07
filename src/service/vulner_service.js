@@ -1,5 +1,3 @@
-/* eslint-disable */
-import { SERVER_ADDRESS, token } from "../config/config";
 import instance from "./axiosConfig";
 
 export class VulnerService {
@@ -15,7 +13,7 @@ export class VulnerService {
   static scanImage(imageId, trivy, clair) {
     return new Promise((resolve, reject) => {
       instance
-        .post("/scan/start_reservation_process" + token, {
+        .post("/scan/start_reservation_process", {
           imageId: imageId,
           clair: clair,
           trivy: trivy,

@@ -73,17 +73,6 @@ export default function SettignList() {
     localStorage.setItem("VUL_LEVEL", currency);
   }, [trivy, clair, AUTO_SCAN, AUTO_STOP, GIJUN, HOOK_URL, currency]);
 
-  function updateSetting() {
-    SettingController.updateSetting({
-      AUTO_SCAN: AUTO_SCAN,
-      AUTO_STOP: AUTO_STOP,
-      GIJUN_PER_MINUTE: GIJUN,
-      HOOK_URL: HOOK_URL,
-      VUL_LEVEL: currency,
-    });
-  }
-
-  // swich lavel CVE_trivy, CVE_clair 값 변경
   const handleChangeTrivy = (event) => {
     setTrivy(event.target.checked);
   };
@@ -109,28 +98,6 @@ export default function SettignList() {
       AUTO_STOP: event.target.checked,
       GIJUN_PER_MINUTE: GIJUN,
       HOOK_URL: HOOK_URL,
-      VUL_LEVEL: currency,
-    });
-  };
-
-  const handleChangeGijun = (event) => {
-    setGIJUN(event.target.value);
-    SettingController.updateSetting({
-      AUTO_SCAN: AUTO_SCAN,
-      AUTO_STOP: AUTO_STOP,
-      GIJUN_PER_MINUTE: event.target.value,
-      HOOK_URL: HOOK_URL,
-      VUL_LEVEL: currency,
-    });
-  };
-
-  const handleChangeHookUrl = (event) => {
-    setHOOK_URL(event.target.value);
-    SettingController.updateSetting({
-      AUTO_SCAN: AUTO_SCAN,
-      AUTO_STOP: AUTO_STOP,
-      GIJUN_PER_MINUTE: GIJUN,
-      HOOK_URL: event.target.value,
       VUL_LEVEL: currency,
     });
   };
@@ -371,7 +338,15 @@ export default function SettignList() {
                   id="outlined-basic"
                   label={GIJUN}
                   variant="outlined"
-                  onChange={(newValue) => setGIJUN(newValue.target.value)}
+                  onChange={(newValue) =>
+                    SettingController.updateSetting({
+                      AUTO_SCAN: AUTO_SCAN,
+                      AUTO_STOP: AUTO_STOP,
+                      GIJUN_PER_MINUTE: newValue.target.value,
+                      HOOK_URL: HOOK_URL,
+                      VUL_LEVEL: currency,
+                    })
+                  }
                   sx={{ mr: 1, width: 300 }}
                 />
               </td>

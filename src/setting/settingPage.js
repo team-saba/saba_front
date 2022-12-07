@@ -4,7 +4,6 @@ import { Grid } from "@mui/material";
 export default function SettingPage() {
   return (
     <div className="AppSetting">
-      <containerHeader></containerHeader>
       <body class="hold-transition sidebar-mini">
         <div class="wrapper">
           <div class="content-wrapper">
@@ -19,7 +18,6 @@ export default function SettingPage() {
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item"></li>
-                      <li class="breadcrumb-item active">container v3</li>
                     </ol>
                   </div>
                 </div>

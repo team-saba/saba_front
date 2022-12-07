@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useEffect } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
 import { useState } from "react";
@@ -10,10 +9,12 @@ import { Button, IconButton } from "@mui/material";
 import { VerifiedUserIcon } from "../element";
 import * as React from "react";
 
-export default function remoteTable() {
+export default function RemoteTable() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   let [containers, setContainers] = useState([]);
   const style = { color: "green" };
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     DockerServiceController.remoteContainer()
       .then(({ containers }) => {
@@ -90,7 +91,6 @@ export default function remoteTable() {
                 >
                   remove
                 </button>
-                {/* //Kill pause resume rename exec */}
                 <button type="button" class="btn btn-primary" onclick="">
                   kill
                 </button>
@@ -102,9 +102,6 @@ export default function remoteTable() {
                 </button>
                 <button type="button" class="btn btn-primary" onclick="">
                   rename
-                </button>
-                <button type="button" class="btn btn-primary" onclick="">
-                  exec
                 </button>
                 <button type="button" class="btn btn-primary" onclick="">
                   scan

@@ -1,15 +1,9 @@
-/* eslint-disable */
 import React from "react";
 import IamgeTable from "./table";
 
 export default function AppImage() {
-  const [signing, signingSet] = React.useState(false);
-  const signingOpen = () => signingSet(true);
-  const signingClose = () => signingSet(false);
-
   return (
     <div className="AppSetting">
-      <containerHeader></containerHeader>
       <body>
         <div class="wrapper">
           <div class="content-wrapper">

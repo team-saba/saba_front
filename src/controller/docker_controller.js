@@ -60,11 +60,6 @@ export class DockerServiceController {
     return resJson;
   }
 
-  static exec(container_id) {
-    const resJson = DockerService.exec(container_id);
-    return resJson;
-  }
-
   static scan(image_id) {
     const resJson = DockerService.scan(image_id);
     return resJson;

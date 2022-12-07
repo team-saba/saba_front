@@ -3,7 +3,11 @@ export default function AppMenu() {
     <div className="AppMenu">
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="/" class="brand-link">
-          <img src="logo192.png" class="brand-image img-circle elevation-3" />
+          <img
+            src="/dist/img/logo192.png"
+            class="brand-image img-circle elevation-3"
+            alt="Logo"
+          />
           <span class="brand-text font-weight-light">
             <strong>saba</strong> saba
           </span>
@@ -14,6 +18,7 @@ export default function AppMenu() {
               <img
                 src="/dist/img/sweda.png"
                 className="brand-image img-circle elevation-3"
+                alt="User"
               />
             </div>
             <div class="info">
@@ -49,32 +54,28 @@ export default function AppMenu() {
               <li class="nav-item menu-open">
                 <a href="#" class="nav-link">
                   <p>
-                    local
+                    Local
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="/container" class="nav-link">
-                      <i className="fa-brands fa-docker"></i>
                       <p> Container</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a href="/images" className="nav-link">
-                      <i className="fa-solid fa-image"></i>
-                      <p> images</p>
+                      <p> Images</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a href="/vulner" className="nav-link">
-                      <i className="fa-solid fa-triangle-exclamation"></i>
-                      <p> vulnerability</p>
+                      <p> Vulnerability</p>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a href="/log" className="nav-link">
-                      <i className="fa-solid fa-font-awesome"></i>
                       <p> Log</p>
                     </a>
                   </li>
@@ -84,14 +85,13 @@ export default function AppMenu() {
               <li className="nav-item menu-open">
                 <a href="#" className="nav-link">
                   <p>
-                    remote
+                    Remote
                     <i className="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
                     <a href="/container?remote=remote" className="nav-link">
-                      <i className="fa-brands fa-docker"></i>
                       <p> Container</p>
                     </a>
                   </li>
@@ -99,8 +99,7 @@ export default function AppMenu() {
               </li>
               <li className="nav-item">
                 <a href="/setting" className="nav-link">
-                  <i className="fa-solid fa-gear"></i>
-                  <p> setting</p>
+                  <p> Setting</p>
                 </a>
               </li>
             </ul>

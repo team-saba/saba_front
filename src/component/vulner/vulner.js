@@ -1,13 +1,9 @@
-/* eslint-disable */
-
-import CveTable from "./cveTable";
 import ContainerTable from "./containerTable";
 import * as React from "react";
 
 export default function Vulnerability() {
   return (
     <div className="AppSetting">
-      <containerHeader></containerHeader>
       <body class="hold-transition sidebar-mini">
         <div class="wrapper">
           <div class="content-wrapper">
@@ -29,14 +25,6 @@ export default function Vulnerability() {
             <ContainerTable></ContainerTable>
           </div>
         </div>
-
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="dist/js/adminlte.js"></script>
-
-        <script src="plugins/chart.js/Chart.min.js"></script>
-        <script src="dist/js/demo.js"></script>
-        <script src="dist/js/pages/dashboard3.js"></script>
       </body>
     </div>
   );

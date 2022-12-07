@@ -64,11 +64,11 @@ export default function CveTable() {
   return (
     <div style={{ height: 600, width: "100%", backgroundColor: "white" }}>
       <DataGrid
-        rowHeight={60}
+        rowHeight={40}
         rows={scanResult}
         columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
+        pageSize={20}
+        rowsPerPageOptions={[20]}
         disableSelectionOnClick
       />
     </div>

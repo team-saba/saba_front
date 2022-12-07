@@ -13,7 +13,7 @@ export default function AppMain() {
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item">
-                        <a href="#">Home</a>
+                        <a href="/">Home</a>
                       </li>
                       <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
@@ -23,14 +23,6 @@ export default function AppMain() {
             </div>
           </div>
         </div>
-
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="dist/js/adminlte.js"></script>
-
-        <script src="plugins/chart.js/Chart.min.js"></script>
-        <script src="dist/js/demo.js"></script>
-        <script src="dist/js/pages/dashboard3.js"></script>
       </body>
     </div>
   );
