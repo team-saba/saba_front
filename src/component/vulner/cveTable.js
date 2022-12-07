@@ -5,32 +5,42 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
   {
-    field: "VulnerabilityID",
-    headerName: "VulnerabilityID",
+    field: "cveid",
+    headerName: "cveid",
     width: 170,
   },
   {
-    field: "Severity",
-    headerName: "Severity",
+    field: "severity",
+    headerName: "severity",
     minWidth: 100,
     renderCell: (params) => {
-      return <div>{params.row.Severity}</div>;
+      return <div>{params.row.severity}</div>;
     },
   },
   {
-    field: "PkgName",
-    headerName: "PkgName",
+    field: "packageName",
+    headerName: "packageName",
     minWidth: 100,
   },
   {
-    field: "InstalledVersion",
-    headerName: "InstalledVersion",
+    field: "packageInstalled",
+    headerName: "packageInstalled",
     minWidth: 150,
   },
   {
-    field: "Description",
-    headerName: "Description",
+    field: "packageFixedIn",
+    headerName: "packageFixedIn",
+    minWidth: 150,
+  },
+  {
+    field: "description",
+    headerName: "description",
     minWidth: 200,
+  },
+  {
+    field: "engine",
+    headerName: "engine",
+    minWidth: 100,
   },
 ];
 
@@ -54,11 +64,11 @@ export default function CveTable() {
   return (
     <div style={{ height: 600, width: "100%", backgroundColor: "white" }}>
       <DataGrid
-        rowHeight={60}
+        rowHeight={40}
         rows={scanResult}
         columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
+        pageSize={20}
+        rowsPerPageOptions={[20]}
         disableSelectionOnClick
       />
     </div>

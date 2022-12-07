@@ -1,5 +1,4 @@
 import { SigningService } from "../service/signing_service";
-import { DockerService } from "../service/docker_service";
 
 export class SigningServiceController {
   static async login(id, pw) {
@@ -29,7 +28,7 @@ export class SigningServiceController {
   }
 
   static async keyGen(pw) {
-    if (typeof pw == "undefined" || pw == null || pw == "") {
+    if (typeof pw === "undefined" || pw === null || pw === "") {
       alert("키 생성 비밀번호를 입력해주세요");
       return;
     }
@@ -42,7 +41,7 @@ export class SigningServiceController {
   }
 
   static async keyDel(pw) {
-    if (typeof pw == "undefined" || pw == null || pw == "") {
+    if (typeof pw === "undefined" || pw === null || pw === "") {
       alert("키 삭제 비밀번호를 입력해주세요");
       return;
     }

@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { IconButton } from "@mui/material";
 import { VerifiedUserIcon } from "../element";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { VulnerServiceController } from "../../controller/vulner_controller";
 
 export default function ContainerTable() {
@@ -13,10 +13,10 @@ export default function ContainerTable() {
 
   const [loading, setLoading] = useState(true);
 
-  const [trivy, setTrivy] = React.useState(
+  const [trivy] = React.useState(
     localStorage.getItem("trivy") === "true" ? true : false
   );
-  const [clair, setClair] = React.useState(
+  const [clair] = React.useState(
     localStorage.getItem("clair") === "true" ? true : false
   );
 
@@ -269,9 +269,9 @@ export default function ContainerTable() {
   if (loading) return <div>로딩중...</div>;
 
   return (
-    <div style={{ height: 950, width: "100%", backgroundColor: "white" }}>
+    <div style={{ height: 715, width: "100%", backgroundColor: "white" }}>
       <DataGrid
-        rowHeight={80}
+        rowHeight={60}
         rows={scanList}
         columns={columns}
         pageSize={10}

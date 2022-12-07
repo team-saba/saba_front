@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from "react";
 import Button from "@mui/material/Button";
 import { IconButton } from "@mui/material";
@@ -56,8 +55,8 @@ function isRunning(status) {
 }
 
 function checkNull(value) {
-  if (typeof value == "undefined" || value == null || value == "") return true;
-  else false;
+  if (typeof value === "undefined" || value === null || value === "")
+    return true;
 }
 
 function SigningData(props) {

@@ -1,6 +1,4 @@
-/* eslint-disable */
 import instance from "./axiosConfig";
-import { token } from "../config/config";
 
 export class SigningService {
   static login(id, pw) {

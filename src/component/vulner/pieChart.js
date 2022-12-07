@@ -22,7 +22,7 @@ const PieChart = (props) => {
         innerRadius={0.5}
         padAngle={1.8}
         cornerRadius={8}
-        colors={["red", "orange", "green", "blue"]}
+        colors={["blue", "green", "orange", "red"]}
         borderWidth={0}
         arcLinkLabelsSkipAngle={0}
         arcLinkLabelsTextColor="#000000"

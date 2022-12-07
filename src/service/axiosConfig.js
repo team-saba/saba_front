@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SERVER_ADDRESS, token } from "../config/config";
+import { SERVER_ADDRESS } from "../config/config";
 
 const instance = axios.create({
   baseURL: SERVER_ADDRESS,

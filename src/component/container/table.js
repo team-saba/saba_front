@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
@@ -24,6 +23,7 @@ export default function Table() {
   if (imageId === "remote") {
     return remoteTable();
   } else {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       getContainer();
     }, []);
@@ -89,7 +89,7 @@ export default function Table() {
     return (
       <div
         style={{
-          height: 650,
+          height: 750,
           width: "100%",
           backgroundColor: "white",
         }}

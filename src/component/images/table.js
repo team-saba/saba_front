@@ -1,22 +1,21 @@
-/* eslint-disable */
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { IconButton } from "@mui/material";
 import { VerifiedUserIcon } from "../element";
-import { useEffect, useState } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
 import { SigningServiceController } from "../../controller/signing_controller";
 import SigningModal from "./signingModal";
 import VulnModal from "./vulnModal";
+import { useEffect, useState } from "react";
 
-export default function iamgeTable() {
+export default function IamgeTable() {
   let [images, setImages] = useState([]);
-  const [open, setOpen] = React.useState(false);
-  const [vulnOpen, setVulnOpen] = React.useState(false);
-  const [signingResult, setResult] = React.useState();
-  const [vulnResult, setVuln] = React.useState();
+  const [open, setOpen] = useState(false);
+  const [vulnOpen, setVulnOpen] = useState(false);
+  const [signingResult, setResult] = useState();
+  const [vulnResult, setVuln] = useState();
 
   function handleOpen() {
     setOpen(!open);
@@ -91,7 +90,7 @@ export default function iamgeTable() {
       headerName: "signed",
       width: 100,
       renderCell: (params) => {
-        if (params.formattedValue == true) {
+        if (params.formattedValue === true) {
           return (
             <IconButton
               aria-label="verified"
@@ -179,13 +178,13 @@ export default function iamgeTable() {
   return (
     <div
       style={{
-        height: 800,
+        height: 715,
         width: "100%",
         backgroundColor: "white",
       }}
     >
       <DataGrid
-        rowHeight={80}
+        rowHeight={60}
         rows={images}
         columns={columns}
         pageSize={10}
