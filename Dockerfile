@@ -1,7 +1,9 @@
 FROM node:16-alpine3.11
 WORKDIR /app/front
-COPY package.json .
-RUN npm install --force
-COPY . .
-CMD ["npm", "start"]
-EXPOSE 3000
+
+RUN npm install -g serve
+
+RUN mkdir ./build
+COPY ./build ./build
+
+ENTRYPOINT ["serve", "-s", "build"]
