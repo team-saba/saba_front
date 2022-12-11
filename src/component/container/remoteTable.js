@@ -1,172 +1,111 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DockerServiceController } from "../../controller/docker_controller";
-import { useState } from "react";
-import Input from "@mui/material/Input";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import SearchIcon from "@mui/icons-material/Search";
-import { Button, IconButton } from "@mui/material";
-import { VerifiedUserIcon } from "../element";
-import * as React from "react";
+import { Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import Tooltips from "./tooltip";
 
-export default function RemoteTable() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+export default function remoteTable() {
   let [containers, setContainers] = useState([]);
+  const [selectionModel, setSelectionModel] = useState();
   const style = { color: "green" };
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
+  function getContainer() {
     DockerServiceController.remoteContainer()
       .then(({ containers }) => {
         setContainers(containers);
       })
       .catch((err) => console.log(err));
+  }
+
+  useEffect(() => {
+    getContainer();
   }, []);
 
-  return (
-    <div className="tableElement">
-      <div id="result"></div>
+  const columns = [
+    {
+      field: "Name",
+      headerName: "name",
+      width: 250,
+      renderCell: (params) => {
+        return <div>{params.formattedValue.replace("/", "")}</div>;
+      },
+    },
+    {
+      field: "Status",
+      headerName: "state",
+      width: 250,
+      renderCell: (params) => {
+        if (params.formattedValue === "running") {
+          return (
+            <Button size="small" variant="contained" color="primary">
+              running
+            </Button>
+          );
+        } else {
+          return (
+            <Button size="small" variant="contained" color="warning">
+              {params.formattedValue}
+            </Button>
+          );
+        }
+      },
+    },
 
-      <table class="table table-striped table-bordered text-center align-middle">
-        <thead>
-          <tr>
-            <th scope="col" colspan="3">
-              <strong>Containers</strong>
-            </th>
-            <th scope="col" colspan="10">
-              <FormControl variant="standard">
-                <Input
-                  id="input-with-icon-adornment"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              &nbsp;&nbsp;&nbsp;
-              <Button size="small" color="primary" variant="contained">
-                submit
-              </Button>
-              &nbsp;&nbsp;
-              <Button size="small" color="success" variant="contained">
-                add container
-              </Button>
-            </th>
-            <th scope="col" colspan="10">
-              <div class="btn-group" role="group" aria-label="Action">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  onClick={() => {
-                    // DockerServiceController.start(container.Id);
-                  }}
-                >
-                  start
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-warning"
-                  onClick={() => {
-                    // DockerServiceController.stop(container.Id);
-                  }}
-                >
-                  stop
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onClick={() => {
-                    // DockerServiceController.restart(container.Id);
-                  }}
-                >
-                  restart
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  onClick={() => {
-                    // DockerServiceController.remove(container.Id);
-                  }}
-                >
-                  remove
-                </button>
-                <button type="button" class="btn btn-primary" onclick="">
-                  kill
-                </button>
-                <button type="button" class="btn btn-primary" onclick="">
-                  pause
-                </button>
-                <button type="button" class="btn btn-primary" onclick="">
-                  resume
-                </button>
-                <button type="button" class="btn btn-primary" onclick="">
-                  rename
-                </button>
-                <button type="button" class="btn btn-primary" onclick="">
-                  scan
-                </button>
-                <button type="button" class="btn btn-primary" onclick="">
-                  sign
-                </button>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <thead>
-          <tr>
-            <th scope="col" colspan="2">
-              name
-            </th>
-            <th scope="col" colspan="2">
-              verified
-            </th>
-            <th scope="col" colspan="2">
-              state
-            </th>
-            <th scope="col" colspan="2">
-              Quick Actions
-            </th>
-            <th scope="col" colspan="2">
-              Stack
-            </th>
-            <th scope="col" colspan="2">
-              image
-            </th>
-            <th scope="col" colspan="2">
-              Created
-            </th>
-            <th scope="col" colspan="2">
-              IP Address
-            </th>
-            <th scope="col" colspan="2">
-              Published Ports Ownership
-            </th>
-          </tr>
-        </thead>
-        <tbody id="result_data">
-          {containers?.map((container) => {
-            return (
-              <tr>
-                <td>{container.Name.replace("/", "")}</td>
-                <td colSpan="2" style={style}>
-                  <IconButton aria-label="verified">
-                    <VerifiedUserIcon style={{ color: "green" }} />
-                  </IconButton>
-                </td>
-                {/* <td colspan="3">{container.State.Status}</td> */}
-                <td colspan="3">{container.Status}</td>
-                <td colspan="2">quickAction</td>
-                <td colspan="2">{container.Stack}</td>
-                <td colspan="2">{container.Image}</td>
-                <td colspan="2">{container["Created Time"]}</td>
-                <td colspan="2">{container.IPAddress}</td>
-                <td colspan="2">{Object.keys(container.Port)[0]}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    { field: "Stack", headerName: "stack", width: 250 },
+    {
+      field: "Image",
+      headerName: "image",
+      width: 250,
+      renderCell: (params) => {
+        return <div>{params.formattedValue.slice(0, 12)}</div>;
+      },
+    },
+    {
+      field: "Created Time",
+      headerName: "created",
+      width: 250,
+      renderCell: (params) => {
+        return <div>{new Date(params.formattedValue).toLocaleString()}</div>;
+      },
+    },
+    { field: "IPAddress", headerName: "IP Address", width: 250 },
+    {
+      field: "Port",
+      headerName: "Published Ports Ownership",
+      width: 250,
+      renderCell: (params) => {
+        return <div>{Object.keys(params.formattedValue)}</div>;
+      },
+    },
+  ];
+
+  return (
+    <div
+      style={{
+        height: 650,
+        width: "100%",
+        backgroundColor: "white",
+      }}
+    >
+      <Tooltips
+        container_id={selectionModel}
+        getContainer={getContainer}
+      ></Tooltips>
+
+      <DataGrid
+        rowHeight={60}
+        rows={containers}
+        columns={columns}
+        pageSize={10}
+        getRowId={(row) => row.CONTAINER_ID}
+        rowsPerPageOptions={[10]}
+        checkboxSelection
+        onSelectionModelChange={(newSelectionModel) => {
+          const temp = newSelectionModel.pop();
+          setSelectionModel(temp);
+        }}
+        selectionModel={selectionModel}
+      />
     </div>
   );
 }
