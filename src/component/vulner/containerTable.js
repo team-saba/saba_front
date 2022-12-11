@@ -27,16 +27,40 @@ export default function ContainerTable() {
       width: 250,
       renderCell: (params) => {
         if (params.row.vulnerability != null) {
-          return (
-            <a
-              href={"/cve/?imageId=" + params.row.Name}
-              onClick={() => {
-                localStorage.setItem("test", JSON.stringify(params.row));
-              }}
-            >
-              {params.row.Name}
-            </a>
-          );
+          var scan_result = params.row.vulnerability;
+          var Critical = 0,
+            High = 0,
+            Medium = 0,
+            Low = 0,
+            Unknown = 0;
+          for (var i = 0; i < scan_result.length; i++) {
+            if (scan_result[i].severity === "CRITICAL") {
+              Critical++;
+            } else if (scan_result[i].severity === "HIGH") {
+              High++;
+            } else if (scan_result[i].severity === "MEDIUM") {
+              Medium++;
+            } else if (scan_result[i].severity === "LOW") {
+              Low++;
+            } else if (scan_result[i].severity === "UNKNOWN") {
+              Unknown++;
+            }
+          }
+          var sumOfVuln = Critical + High + Medium + Low + Unknown;
+          if (sumOfVuln == 0) {
+            return <p style={{ color: "green" }}>{params.row.Name}</p>;
+          } else {
+            return (
+              <a
+                href={"/cve/?imageId=" + params.row.Name}
+                onClick={() => {
+                  localStorage.setItem("test", JSON.stringify(params.row));
+                }}
+              >
+                {params.row.Name}
+              </a>
+            );
+          }
         }
       },
     },
