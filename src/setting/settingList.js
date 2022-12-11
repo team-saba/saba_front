@@ -328,7 +328,7 @@ export default function SettignList() {
                   variant="body2"
                   color="text.primary"
                 >
-                  스캔 주기
+                  스캔 주기(초)
                 </Typography>
               </td>
               <td>
